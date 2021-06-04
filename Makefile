@@ -17,12 +17,12 @@ ifeq ($(platform), funkey)
 else
 	SDL_INCLUDES = `sdl-config --cflags`
 	SDL_INCLUDES += `libmikmod-config --cflags`
-	SDL_LIBS = `sdl-config --libs`
-	SDL_LIBS += `libmikmod-config --libs`
 endif
 
 ifeq ($(platform), funkey_simulated)
 	CFLAGS_EXTRA = -DFUNKEY -DHW_SCREEN_RESIZE -DSOUND_SDL_ACTIVATED
+	SDL_LIBS = `sdl-config --libs`
+	SDL_LIBS += `libmikmod-config --libs`
 endif
 
 DEPFLAGS = $(SDL_INCLUDES)
