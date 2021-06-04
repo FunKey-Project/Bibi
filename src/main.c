@@ -15,9 +15,7 @@
 
 #ifdef SOUND_FMOD_ACTIVATED
 	#include <FMOD/fmod.h>
-#endif //SOUND_FMOD_ACTIVATED
-
-#ifdef SOUND_SDL_ACTIVATED
+#elif defined(SOUND_SDL_ACTIVATED)
 	#include <SDL/SDL_mixer.h>
 #endif //SOUND_SDL_ACTIVATED
 bool audio_init_ok = false;

@@ -19,8 +19,21 @@
 
 #ifdef SOUND_FMOD_ACTIVATED
 	#include <FMOD/fmod.h>
-#endif //SOUND_FMOD_ACTIVATED
+#elif defined(SOUND_SDL_ACTIVATED)
+	#include <SDL/SDL_mixer.h>
+#endif //SOUND_SDL_ACTIVATED
 
+
+struct s_game {
+	t_map map;
+	int nb_joueur;
+	int kill_bomb;
+	t_player player1;
+	t_player player2;
+	t_bomb  list_bombs;
+	t_flamme list_flammes;
+	t_monster list_monsters;
+};
 typedef struct s_game * t_game;
 
 // Create a new game

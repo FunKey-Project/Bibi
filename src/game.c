@@ -16,19 +16,13 @@
 #include "../include/monsters.h"
 #include "../include/flamme.h"
 
-struct s_game {
-	t_map map;
-	int nb_joueur;
-	int kill_bomb;
-	t_player player1;
-	t_player player2;
-	t_bomb  list_bombs;
-	t_flamme list_flammes;
-	t_monster list_monsters;
-};
-
-
 static struct s_game the_game;
+
+#ifdef SOUND_FMOD_ACTIVATED
+	static FSOUND_SAMPLE *bomb_explose;
+#elif defined(SOUND_SDL_ACTIVATED)
+	static Mix_Chunk *bomb_explose;
+#endif //SOUND_FMOD_ACTIVATED
 
 t_game game_new(int nb_joueur, int niveau, int mode, int kill_bomb) {
 	game_time_init();
@@ -56,6 +50,13 @@ t_game game_new(int nb_joueur, int niveau, int mode, int kill_bomb) {
 	the_game.nb_joueur=nb_joueur;
 	the_game.list_flammes=NULL;
 	the_game.list_monsters=NULL;
+
+#ifdef SOUND_FMOD_ACTIVATED
+	bomb_explose = FSOUND_Sample_Load(FSOUND_FREE, "audio/bomb.wav", 0, 0, 0);
+#elif defined(SOUND_SDL_ACTIVATED)
+	bomb_explose = Mix_LoadWAV("audio/bomb.wav");
+#endif //SOUND_FMOD_ACTIVATED
+
 	return &the_game;
 }
 
@@ -88,6 +89,12 @@ void game_free(t_game game) {
 		temp_flamme = get_next_flamme(temp_flamme);
 		free(tmp);
 	}
+
+#ifdef SOUND_FMOD_ACTIVATED
+	FSOUND_Sample_Free(bomb_explose);
+#elif defined(SOUND_SDL_ACTIVATED)
+	Mix_FreeChunk(bomb_explose);
+#endif //SOUND_FMOD_ACTIVATED
 }
 
 t_player game_get_player1(t_game game) {
@@ -192,18 +199,14 @@ t_bonus_type return_bonus(){
 			}
 		}
 	}
-	else
-	return NO_BONUS;
+	else{
+		return NO_BONUS;
+	}
 }
 
 
 //Bombs management
 void bombs_management (t_game game, int all_bombs){
-
-
-#ifdef SOUND_FMOD_ACTIVATED
-	FSOUND_SAMPLE *bomb_explose = FSOUND_Sample_Load(FSOUND_FREE, "audio/bomb.wav", 0, 0, 0);
-#endif //SOUND_FMOD_ACTIVATED
 	t_bomb aux=game->list_bombs;
 	t_player player1 = game->player1;
 	t_player player2 = game->player2;
@@ -220,10 +223,12 @@ void bombs_management (t_game game, int all_bombs){
 				aux=get_next_bomb(aux);
 				aux2=get_next_bomb(aux);
 			}
-
 			else{
+
 #ifdef SOUND_FMOD_ACTIVATED
-				//FSOUND_PlaySound(FSOUND_FREE, bomb_explose);
+				FSOUND_PlaySound(FSOUND_FREE, bomb_explose);
+#elif defined(SOUND_SDL_ACTIVATED)
+				Mix_PlayChannel(-1,bomb_explose,0);
 #endif //SOUND_FMOD_ACTIVATED
 
 				int xb=bomb_get_x(aux2);
@@ -283,8 +288,11 @@ void bombs_management (t_game game, int all_bombs){
 				}
 			}
 			else {
+
 #ifdef SOUND_FMOD_ACTIVATED
-				//FSOUND_PlaySound(FSOUND_FREE, bomb_explose);
+				FSOUND_PlaySound(FSOUND_FREE, bomb_explose);
+#elif defined(SOUND_SDL_ACTIVATED)
+				Mix_PlayChannel(-1,bomb_explose,0);
 #endif //SOUND_FMOD_ACTIVATED
 				int xb=bomb_get_x(aux);
 				int yb=bomb_get_y(aux);
@@ -334,9 +342,6 @@ void bombs_management (t_game game, int all_bombs){
 		}
 
 	}
-#ifdef SOUND_FMOD_ACTIVATED
-	FSOUND_Sample_Free(bomb_explose);
-#endif //SOUND_FMOD_ACTIVATED
 }
 
 void flamme_management(t_game game) {
