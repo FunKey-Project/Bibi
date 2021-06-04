@@ -163,9 +163,17 @@
 #define PROBA_BONUS_MONSTER      30
 
 // Name of the file that contains the map
-#define SRC_LEVELS_1_PLAYER		"data/levels_1p.lvl"
+#ifdef FUNKEY
+	#define SRC_LEVELS_1_PLAYER		"data/levels_1p_FunKey.lvl"
+#else
+	#define SRC_LEVELS_1_PLAYER		"data/levels_1p.lvl"
+#endif
 #define SRC_LEVELS_2_PLAYERS	"data/levels_2p.lvl"
-#define SRC_LEVELS_EDITOR		"data/levels_editor.lvl"
+#ifdef FUNKEY
+	#define SRC_LEVELS_EDITOR		"data/levels_editor_FunKey.lvl"
+#else
+	#define SRC_LEVELS_EDITOR		"data/levels_editor.lvl"
+#endif
 
 
 
