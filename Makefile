@@ -9,25 +9,27 @@ CC = $(CROSS_COMPILE)gcc -g
 
 ifeq ($(platform), funkey)
 	SDL_INCLUDES  = $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/sdl-config --cflags)
-	SDL_INCLUDES  += $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/libmikmod-config --cflags)
 	SDL_LIBS = $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/sdl-config --libs)
+	SDL_INCLUDES  += $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/libmikmod-config --cflags)
 	SDL_LIBS += $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/libmikmod-config --libs)
 	SDL_LIBS += -Wl,--as-needed -Wl,--gc-sections -Wl,-O1,--sort-common -flto -s
 	CFLAGS_EXTRA = -DFUNKEY -DHW_SCREEN_RESIZE -DSOUND_SDL_ACTIVATED
+	LDFLAGS_EXTRA =  -lSDL_mixer
 else
 	SDL_INCLUDES = `sdl-config --cflags`
-	SDL_INCLUDES += `libmikmod-config --cflags`
+	SDL_LIBS = `sdl-config --libs`
 endif
 
 ifeq ($(platform), funkey_simulated)
 	CFLAGS_EXTRA = -DFUNKEY -DHW_SCREEN_RESIZE -DSOUND_SDL_ACTIVATED
-	SDL_LIBS = `sdl-config --libs`
+	LDFLAGS_EXTRA =  -lSDL_mixer
+	SDL_INCLUDES += `libmikmod-config --cflags`
 	SDL_LIBS += `libmikmod-config --libs`
 endif
 
 DEPFLAGS = $(SDL_INCLUDES)
 CFLAGS = -Wall -O -std=c99 $(SDL_INCLUDES) $(CFLAGS_EXTRA)
-LDFLAGS = $(SDL_LIBS) -lSDL_image -lSDL_mixer
+LDFLAGS = $(SDL_LIBS) -lSDL_image $(LDFLAGS_EXTRA)
 
 SRC  = $(wildcard src/*.c)
 OBJ  = $(SRC:.c=.o) 
