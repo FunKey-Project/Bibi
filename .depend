@@ -1,0 +1,368 @@
+player.o: src/player.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/game.h src/../include/../include/constant.h \
+ src/../include/../include/misc.h src/../include/../include/map.h \
+ src/../include/../include/player.h \
+ src/../include/../include/../include/constant.h \
+ src/../include/../include/bomb.h src/../include/../include/monsters.h \
+ src/../include/../include/flamme.h
+game_time.o: src/game_time.c src/../include/game_time.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ src/../include/constant.h
+flamme.o: src/flamme.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/game.h src/../include/../include/constant.h \
+ src/../include/../include/misc.h src/../include/../include/map.h \
+ src/../include/../include/player.h \
+ src/../include/../include/../include/constant.h \
+ src/../include/../include/bomb.h src/../include/../include/monsters.h \
+ src/../include/../include/flamme.h
+game.o: src/game.c src/../include/game.h \
+ src/../include/../include/constant.h src/../include/../include/misc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/../include/map.h src/../include/../include/player.h \
+ src/../include/../include/../include/constant.h \
+ src/../include/../include/bomb.h src/../include/../include/monsters.h \
+ src/../include/../include/flamme.h src/../include/game_time.h \
+ src/../include/misc.h src/../include/player.h src/../include/bomb.h \
+ src/../include/monsters.h src/../include/flamme.h
+niveau.o: src/niveau.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/editeur.h src/../include/misc.h src/../include/constant.h \
+ src/../include/niveau.h
+misc.o: src/misc.c src/../include/misc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/constant.h
+main.o: src/main.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/constant.h src/../include/game.h \
+ src/../include/../include/constant.h src/../include/../include/misc.h \
+ src/../include/../include/map.h src/../include/../include/player.h \
+ src/../include/../include/../include/constant.h \
+ src/../include/../include/bomb.h src/../include/../include/monsters.h \
+ src/../include/../include/flamme.h src/../include/game_time.h \
+ src/../include/editeur.h src/../include/niveau.h
+editeur.o: src/editeur.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/constant.h src/../include/editeur.h src/../include/map.h \
+ src/../include/misc.h
+monsters.o: src/monsters.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/game.h src/../include/../include/constant.h \
+ src/../include/../include/misc.h src/../include/../include/map.h \
+ src/../include/../include/player.h \
+ src/../include/../include/../include/constant.h \
+ src/../include/../include/bomb.h src/../include/../include/monsters.h \
+ src/../include/../include/flamme.h
+map.o: src/map.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/constant.h src/../include/map.h src/../include/misc.h \
+ src/../include/game_time.h src/../include/game.h \
+ src/../include/../include/constant.h src/../include/../include/misc.h \
+ src/../include/../include/map.h src/../include/../include/player.h \
+ src/../include/../include/../include/constant.h \
+ src/../include/../include/bomb.h src/../include/../include/monsters.h \
+ src/../include/../include/flamme.h
+bomb.o: src/bomb.c \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_main.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_stdinc.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_config.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_platform.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/begin_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/close_code.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_audio.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_error.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_endian.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mutex.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_thread.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_rwops.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cdrom.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_cpuinfo.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_events.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_active.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keyboard.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_keysym.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_mouse.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_video.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_joystick.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_quit.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_loadso.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_timer.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_version.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL_image.h \
+ /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/../../usr/include/SDL/SDL.h \
+ src/../include/game.h src/../include/../include/constant.h \
+ src/../include/../include/misc.h src/../include/../include/map.h \
+ src/../include/../include/player.h \
+ src/../include/../include/../include/constant.h \
+ src/../include/../include/bomb.h src/../include/../include/monsters.h \
+ src/../include/../include/flamme.h

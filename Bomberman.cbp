@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Bomberman" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\Bomberman" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="..\..\..\..\..\Program Files\CodeBlocks\SDL-1.2.14\lib\SDL_image.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\Bomberman" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="$(#sdl.include)" />
+		</Compiler>
+		<Linker>
+			<Add library="mingw32" />
+			<Add library="SDLmain" />
+			<Add library="SDL.dll" />
+			<Add library="user32" />
+			<Add library="gdi32" />
+			<Add library="winmm" />
+			<Add library="dxguid" />
+			<Add library="C:\Program Files\CodeBlocks\MinGW\lib\libfmod.a" />
+			<Add directory="$(#sdl.lib)" />
+		</Linker>
+		<Unit filename="data\level1.lvl">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="data\level13.lvl">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="data\niveaux.lvl">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\bomb.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\constant.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\editeur.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\flamme.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\game.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\game_time.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\map.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\misc.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\monsters.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\niveau.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="include\player.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\BMLT_shirobon - Copie (13).png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\BombermanDS.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\FireCenter.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\FireDown.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\FireHrz.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\FireLeft.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\FireRight.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\FireUp.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\FireVert.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\LargeCenter.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\LargeDown.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\LargeHrz.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\LargeLeft.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\LargeRight.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\LargeUp.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\LargeVert.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\ThinCenter.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\ThinDown.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\ThinHrz.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\ThinLeft.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\ThinRight.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\ThinUp.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\ThinVert.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\XLCENTER.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\XLDOWN.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\XLHRZ.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\XLLEFT.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\XLRIGHT.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\XLUP.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\XLVERT.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bomb1.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bomb2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bomb3.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bomb4.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bombs_0.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bombs_1.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bombs_2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bombs_3.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bombs_4.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bombs_5.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bonus_bomb_nb_dec.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bonus_bomb_nb_inc.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bonus_bomb_range_dec.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\bonus_bomb_range_inc.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\box.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\egalite.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\lives_1.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\lives_2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\lives_3.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\lives_4.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\menu.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\menu_1_p.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\menu_2_p.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\menu_e.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\menu_empty.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_down.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_down_FV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_down_LV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_down_TV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_down_XLV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_left.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_left_FV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_left_LV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_left_TV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_left_XLV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_right.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_right_FV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_right_LV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_right_TV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_right_XLV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_up.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_up_FV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_up_LV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_up_TV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\monster_up_XLV.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\objectif.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\p_1_win.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\p_2_win.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_down.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_down_2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_left.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_left_2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_right.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_right_2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_up.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\player_up_2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\range_0.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\range_1.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\range_2.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\range_3.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\range_4.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\range_5.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\wall.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\you_die.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="sprite\you_win.png">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\bomb.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\editeur.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\flamme.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\game.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\game_time.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\main.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\map.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\misc.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\monsters.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\niveau.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="src\player.c">
+			<Option compilerVar="CC" />
+			<Option target="Debug" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

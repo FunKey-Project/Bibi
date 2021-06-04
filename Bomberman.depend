@@ -1,0 +1,346 @@
+# depslib dependency file v1.0
+1275819069 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\bomb.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/game.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1255800464 c:\program files\codeblocks\sdl-1.2.14\include\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_platform.h
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\begin_code.h
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\close_code.h
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_keysym.h
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255800450 c:\program files\codeblocks\sdl-1.2.14\include\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1258246278 c:\program files\codeblocks\sdl-1.2.14\include\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1275650570 c:\vincent\textes\enseirb\bomberman\bomberman\include\game.h
+	<FMOD/fmod.h>
+	"../include/constant.h"
+	"../include/misc.h"
+	"../include/map.h"
+	"../include/player.h"
+	"../include/bomb.h"
+	"../include/monsters.h"
+	"../include/flamme.h"
+
+1275757102 c:\vincent\textes\enseirb\bomberman\bomberman\include\constant.h
+
+1270050516 c:\vincent\textes\enseirb\bomberman\bomberman\include\misc.h
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<assert.h>
+	"SDL.h"
+	"SDL_image.h"
+
+1275395843 c:\vincent\textes\enseirb\bomberman\bomberman\include\map.h
+	<stdlib.h>
+	<stdio.h>
+	"SDL.h"
+	"SDL_image.h"
+
+1274546933 c:\vincent\textes\enseirb\bomberman\bomberman\include\player.h
+	<stdio.h>
+	<stdlib.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/constant.h"
+
+1274106383 c:\vincent\textes\enseirb\bomberman\bomberman\include\bomb.h
+	<stdio.h>
+	<stdlib.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/constant.h"
+
+1274650779 c:\vincent\textes\enseirb\bomberman\bomberman\include\monsters.h
+	<stdio.h>
+	<stdlib.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/constant.h"
+
+1273580077 c:\vincent\textes\enseirb\bomberman\bomberman\include\flamme.h
+	<stdio.h>
+	<stdlib.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/constant.h"
+
+1275863168 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\editeur.c
+	<stdlib.h>
+	<stdio.h>
+	<SDL.h>
+	"SDL_image.h"
+	"../include/constant.h"
+	"../include/editeur.h"
+	"../include/map.h"
+	"../include/misc.h"
+
+1274529286 c:\vincent\textes\enseirb\bomberman\bomberman\include\editeur.h
+
+1275819057 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\flamme.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/game.h"
+
+1275893015 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\game.c
+	<assert.h>
+	<time.h>
+	<FMOD/fmod.h>
+	"../include/game.h"
+	"../include/game_time.h"
+	"../include/misc.h"
+	"../include/player.h"
+	"../include/bomb.h"
+	"../include/monsters.h"
+	"../include/flamme.h"
+
+1271699230 c:\vincent\textes\enseirb\bomberman\bomberman\include\game_time.h
+	<SDL.h>
+
+1275819045 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\game_time.c
+	"../include/game_time.h"
+	"../include/constant.h"
+
+1275870093 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	<stdbool.h>
+	<SDL.h>
+	<SDL_image.h>
+	<FMOD/fmod.h>
+	"../include/game.h"
+	"../include/game_time.h"
+	"../include/editeur.h"
+	"../include/niveau.h"
+
+1275819034 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\map.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	<SDL.h>
+	"SDL_image.h"
+	<time.h>
+	"../include/constant.h"
+	"../include/map.h"
+	"../include/misc.h"
+	"../include/game_time.h"
+	"../include/game.h"
+
+1275819030 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\misc.c
+	"../include/misc.h"
+	"../include/constant.h"
+
+1275819025 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\monsters.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/game.h"
+
+1275819015 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\player.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	"SDL.h"
+	"SDL_image.h"
+	"../include/game.h"
+
+1275649538 c:\vincent\textes\enseirb\bomberman\bomberman\include\niveau.h
+
+1275862812 source:c:\vincent\textes\enseirb\bomberman\bomberman\src\niveau.c
+	<stdlib.h>
+	<stdio.h>
+	<SDL.h>
+	"SDL_image.h"
+	"../include/editeur.h"
+	"../include/misc.h"
+	"../include/constant.h"
+	"../include/niveau.h"
+

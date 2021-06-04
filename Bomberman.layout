@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="data\level1.lvl" open="1" top="0" tabpos="13">
+		<Cursor position="1123" topLine="41" />
+	</File>
+	<File name="data\level13.lvl" open="1" top="0" tabpos="14">
+		<Cursor position="367" topLine="0" />
+	</File>
+	<File name="data\niveaux.lvl" open="1" top="0" tabpos="15">
+		<Cursor position="1354" topLine="52" />
+	</File>
+	<File name="include\bomb.h" open="1" top="0" tabpos="19">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="include\constant.h" open="1" top="0" tabpos="8">
+		<Cursor position="5903" topLine="115" />
+	</File>
+	<File name="include\editeur.h" open="1" top="0" tabpos="17">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="include\game.h" open="1" top="0" tabpos="12">
+		<Cursor position="762" topLine="22" />
+	</File>
+	<File name="include\map.h" open="1" top="0" tabpos="10">
+		<Cursor position="1346" topLine="0" />
+	</File>
+	<File name="include\monsters.h" open="1" top="0" tabpos="18">
+		<Cursor position="1055" topLine="3" />
+	</File>
+	<File name="include\niveau.h" open="1" top="0" tabpos="9">
+		<Cursor position="353" topLine="0" />
+	</File>
+	<File name="include\player.h" open="1" top="0" tabpos="11">
+		<Cursor position="38" topLine="3" />
+	</File>
+	<File name="src\bomb.c" open="1" top="0" tabpos="5">
+		<Cursor position="1714" topLine="2" />
+	</File>
+	<File name="src\editeur.c" open="1" top="0" tabpos="3">
+		<Cursor position="4455" topLine="111" />
+	</File>
+	<File name="src\game.c" open="1" top="1" tabpos="4">
+		<Cursor position="968" topLine="36" />
+	</File>
+	<File name="src\main.c" open="1" top="0" tabpos="1">
+		<Cursor position="6069" topLine="272" />
+	</File>
+	<File name="src\map.c" open="1" top="0" tabpos="6">
+		<Cursor position="5881" topLine="180" />
+	</File>
+	<File name="src\monsters.c" open="1" top="0" tabpos="16">
+		<Cursor position="265" topLine="0" />
+	</File>
+	<File name="src\niveau.c" open="1" top="0" tabpos="2">
+		<Cursor position="482" topLine="15" />
+	</File>
+	<File name="src\player.c" open="1" top="0" tabpos="7">
+		<Cursor position="4947" topLine="176" />
+	</File>
+</CodeBlocks_layout_file>
