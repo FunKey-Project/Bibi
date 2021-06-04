@@ -2,10 +2,9 @@
 #define CONSTANT_H_
 
 
-
 // Use Sound ?
 //#define SOUND_FMOD_ACTIVATED
-//#define SOUND_SDL_ACTIVATED
+#define SOUND_SDL_ACTIVATED
 
 // Resize ?
 #define HW_SCREEN_RESIZE

@@ -6,10 +6,15 @@ TARGET_FUNKEY ?= 1
 
 ifeq ($(TARGET_FUNKEY),1)
 	SDL_INCLUDES  = $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/sdl-config --cflags)
-	SDL_LIBS = $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/sdl-config --libs) -Wl,--as-needed -Wl,--gc-sections -Wl,-O1,--sort-common -flto -s
+	SDL_INCLUDES  += $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/libmikmod-config --cflags)
+	SDL_LIBS = $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/sdl-config --libs)
+	SDL_LIBS += $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/libmikmod-config --libs)
+	SDL_LIBS += -Wl,--as-needed -Wl,--gc-sections -Wl,-O1,--sort-common -flto -s
 else
 	SDL_INCLUDES = `sdl-config --cflags`
+	SDL_INCLUDES += `libmikmod-config --cflags`
 	SDL_LIBS = `sdl-config --libs`
+	SDL_LIBS += `libmikmod-config --libs`
 endif
 
 DEPFLAGS = $(SDL_INCLUDES)
