@@ -1,7 +1,7 @@
 CC = $(CROSS_COMPILE)gcc -g
 
 
-TARGET_FUNKEY ?= 1
+TARGET_FUNKEY ?= 0
 
 
 ifeq ($(TARGET_FUNKEY),1)

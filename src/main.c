@@ -38,7 +38,8 @@ int input_update(t_game game, int nb_joueur) {
 	t_map map = game_the_map(game);
 	int x, y;
 
-	while (SDL_PollEvent(&event)) {
+	// Loop through all pending events and process only the latest one
+	while (SDL_PollEvent(&event)){
 		switch (event.type) {
 		case SDL_QUIT:
 			return 2;
@@ -46,9 +47,11 @@ int input_update(t_game game, int nb_joueur) {
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
 			case SDLK_ESCAPE:
+			case SDLK_q:
 				return 2;
 
 			case SDLK_UP:
+			case SDLK_u:
 				player_set_current_way(player1, UP);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -57,6 +60,7 @@ int input_update(t_game game, int nb_joueur) {
 				break;
 
 			case SDLK_DOWN:
+			case SDLK_d:
 				player_set_current_way(player1, DOWN);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -65,6 +69,7 @@ int input_update(t_game game, int nb_joueur) {
 				break;
 
 			case SDLK_RIGHT:
+			case SDLK_r:
 				player_set_current_way(player1, RIGHT);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -73,6 +78,7 @@ int input_update(t_game game, int nb_joueur) {
 				break;
 
 			case SDLK_LEFT:
+			case SDLK_l:
 				player_set_current_way(player1, LEFT);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -80,20 +86,11 @@ int input_update(t_game game, int nb_joueur) {
 				}
 				break;
 
-			case SDLK_END:					//sert à poser une bombe pour le joueur 1 (cette touche sert 
-				x= player_get_x(player1);   //pour les ordinateurs portables qui n'ont pas forcément la touce 0 à côté des flèches directionnelles)
-				y= player_get_y(player1);
-
-				if (player_get_nb_bomb(player1)>0 && map_get_cell_type(map,x,y)!=CELL_BOMB){
-					int portee=player_portee_bomb(player1);
-					game_init_bomb(game,x,y,portee,1);
-					map_set_cell_type(map, x, y, CELL_BOMB);
-					player_decrease_nb_bomb(player1);
-				}
-				break;
-
-
-			case SDLK_KP0:					//sert à poser une bombe pour le joueur 1
+			//sert à poser une bombe pour le joueur 1
+			case SDLK_END:	//cette touche sert pour les ordinateurs portables qui n'ont pas forcément la touce 0 à côté des flèches directionnelles)
+			case SDLK_KP0:
+			case SDLK_a:
+			case SDLK_b:
 				x= player_get_x(player1);
 				y= player_get_y(player1);
 
@@ -105,7 +102,8 @@ int input_update(t_game game, int nb_joueur) {
 				}
 				break;
 
-				// touches du joueur 2:
+	/*
+			// touches du joueur 2:
 			case SDLK_e:
 				if (nb_joueur == 2){
 					player_set_current_way(player2, UP);
@@ -156,6 +154,7 @@ int input_update(t_game game, int nb_joueur) {
 					}
 				}
 				break;
+	*/
 
 			default: break;
 			}
@@ -187,7 +186,7 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	t_game game = game_new(nb_joueur,niveau,mode, kill_bomb);			//on lance le jeu
 
 #ifdef HW_SCREEN_RESIZE
-			//if(screen != NULL) SDL_FreeSurface(screen);
+			if(screen != NULL) SDL_FreeSurface(screen);
 			screen = SDL_CreateRGBSurface(SDL_SWSURFACE, SIZE_BLOC * map_get_width(game_the_map(game)),
 				SIZE_BLOC * map_get_height(game_the_map(game)), WINDOW_BPP, 
 				0, 0, 0, 0);
@@ -300,7 +299,7 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	}
 
 #ifdef HW_SCREEN_RESIZE
-			//if(screen != NULL) SDL_FreeSurface(screen);
+			if(screen != NULL) SDL_FreeSurface(screen);
 			screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
 			screen = SDL_SetVideoMode(480,480, WINDOW_BPP,SDL_HWSURFACE);
@@ -358,6 +357,7 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	}
 	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 	SDL_BlitSurface(menu, NULL, screen, &positionMenu);
+	SDL_FreeSurface(menu);
 #ifdef HW_SCREEN_RESIZE
 		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
@@ -380,22 +380,18 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 				break;
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym){
-				case SDLK_ESCAPE: 
-					continu = 1;
-					break;
-				case SDLK_RETURN:
-					continu = 1;
-					break;
+				case SDLK_ESCAPE:
 				case SDLK_KP_ENTER:
+				case SDLK_RETURN:
+				case SDLK_a:
+				case SDLK_b:
 					continu = 1;
-					break;
 				default: break;
 				}
 				break;
 			}
 		}
 	}
-	SDL_FreeSurface(menu);
 
 	if (nb_joueur==1 && player_win(player1)==1){
 		game_free(game);
@@ -436,7 +432,7 @@ int main(int argc, char *argv[]) {
 	if (hw_screen == NULL) {
 		error("Can't set video mode: %s\n", SDL_GetError());
 	}
-	//if(screen != NULL) SDL_FreeSurface(screen);
+	if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 700,500, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
 	screen = SDL_SetVideoMode(700,500, WINDOW_BPP,SDL_HWSURFACE);
@@ -541,17 +537,27 @@ int main(int argc, char *argv[]) {
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
+
 		case SDL_QUIT:
+#ifdef SOUND_FMOD_ACTIVATED
 			//FMUSIC_StopSong(musique_menu_p);
+#elif defined(SOUND_SDL_ACTIVATED)
+		 	Mix_HaltMusic();
+#endif //SOUND_SDL_ACTIVATED
 			done = 1;
 			break;
+
 		case SDL_KEYDOWN:
 
 			if(event.key.keysym.sym==SDLK_ESCAPE){ // Veut arrêter le jeu
-				// FMUSIC_StopSong(musique_menu_p);
+#ifdef SOUND_FMOD_ACTIVATED
+				//FMUSIC_StopSong(musique_menu_p);
+#elif defined(SOUND_SDL_ACTIVATED)
+				Mix_HaltMusic();
+#endif //SOUND_SDL_ACTIVATED
 				done = 1;
 			}
-			else if(event.key.keysym.sym==SDLK_UP){
+			else if(event.key.keysym.sym==SDLK_UP || event.key.keysym.sym==SDLK_u){
 				switch(choix_actuel){
 				case 1:
 					menu = IMG_Load("sprite/menu_q.png");
@@ -579,7 +585,7 @@ int main(int argc, char *argv[]) {
 					break;
 				}
 			}
-			else if(event.key.keysym.sym==SDLK_DOWN){
+			else if(event.key.keysym.sym==SDLK_DOWN || event.key.keysym.sym==SDLK_d){
 				switch(choix_actuel){
 				case 1:
 					menu = IMG_Load("sprite/menu_2_p.png");
@@ -607,7 +613,8 @@ int main(int argc, char *argv[]) {
 					break;
 				}
 			}
-			else if(event.key.keysym.sym==SDLK_RETURN || event.key.keysym.sym==SDLK_KP_ENTER){
+			else if(event.key.keysym.sym==SDLK_RETURN || event.key.keysym.sym==SDLK_KP_ENTER 
+				|| event.key.keysym.sym==SDLK_a){
 				switch(choix_actuel){
 					
 				case 1:						//on rentre dans le mode 1 joueur.
@@ -829,18 +836,20 @@ int main(int argc, char *argv[]) {
 
 				case 6:
 					if(are_you_sure(screen)==1){
-						if(audio_init_ok && audio==1)
+						if(audio_init_ok && audio==1){
 #ifdef SOUND_FMOD_ACTIVATED
 							FMUSIC_StopSong(musique_menu_p);
 #elif defined(SOUND_SDL_ACTIVATED)
 							Mix_HaltMusic();
 #endif //SOUND_FMOD_ACTIVATED
+						}
 						done=1;
 						resize=1;
 						break;
 					}
-					else
-					resize=1;
+					else{
+						resize=1;
+					}
 					break;
 
 
@@ -855,7 +864,7 @@ int main(int argc, char *argv[]) {
 		
 		if (resize==1){
 #ifdef HW_SCREEN_RESIZE
-			//if(screen != NULL) SDL_FreeSurface(screen);
+			if(screen != NULL) SDL_FreeSurface(screen);
 			screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 700,500, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
 			screen = SDL_SetVideoMode(700,500, WINDOW_BPP,SDL_HWSURFACE);
