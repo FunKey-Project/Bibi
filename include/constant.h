@@ -4,10 +4,10 @@
 
 // Use Sound ?
 //#define SOUND_FMOD_ACTIVATED
-#define SOUND_SDL_ACTIVATED
+//#define SOUND_SDL_ACTIVATED
 
 // Resize ?
-#define HW_SCREEN_RESIZE
+//#define HW_SCREEN_RESIZE
 #define HW_SCREEN_WIDTH		240
 #define HW_SCREEN_HEIGHT	240
 
@@ -163,7 +163,9 @@
 #define PROBA_BONUS_MONSTER      30
 
 // Name of the file that contains the map
-#define SRC_MAP             "data/level1.lvl"
+#define SRC_LEVELS_1_PLAYER		"data/levels_1p.lvl"
+#define SRC_LEVELS_2_PLAYERS	"data/levels_2p.lvl"
+#define SRC_LEVELS_EDITOR		"data/levels_editor.lvl"
 
 
 

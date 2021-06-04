@@ -30,12 +30,12 @@ t_game game_new(int nb_joueur, int niveau, int mode, int kill_bomb) {
 	FILE *level;
 	if (mode==1){
 		if (nb_joueur==1)
-		level=fopen("data/level1.lvl","r");
+		level=fopen(SRC_LEVELS_1_PLAYER,"r");
 		else
-		level=fopen("data/level13.lvl","r");
+		level=fopen(SRC_LEVELS_2_PLAYERS,"r");
 	}
 	else{
-		level=fopen("data/niveaux.lvl","r");
+		level=fopen(SRC_LEVELS_EDITOR,"r");
 	}
 	the_game.map = map_load_dynamic(level,niveau,nb_joueur);
 	the_game.player1 = player_init(2,1,1,1);

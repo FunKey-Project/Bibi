@@ -47,11 +47,15 @@ int input_update(t_game game, int nb_joueur) {
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
 			case SDLK_ESCAPE:
+#ifdef FUNKEY
 			case SDLK_q:
+#endif //FUNKEY
 				return 2;
 
 			case SDLK_UP:
+#ifdef FUNKEY
 			case SDLK_u:
+#endif //FUNKEY
 				player_set_current_way(player1, UP);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -60,7 +64,9 @@ int input_update(t_game game, int nb_joueur) {
 				break;
 
 			case SDLK_DOWN:
+#ifdef FUNKEY
 			case SDLK_d:
+#endif //FUNKEY
 				player_set_current_way(player1, DOWN);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -69,7 +75,9 @@ int input_update(t_game game, int nb_joueur) {
 				break;
 
 			case SDLK_RIGHT:
+#ifdef FUNKEY
 			case SDLK_r:
+#endif //FUNKEY
 				player_set_current_way(player1, RIGHT);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -78,7 +86,9 @@ int input_update(t_game game, int nb_joueur) {
 				break;
 
 			case SDLK_LEFT:
+#ifdef FUNKEY
 			case SDLK_l:
+#endif //FUNKEY
 				player_set_current_way(player1, LEFT);
 				player_move(player1, map);
 				if (player_win(player1)==1){
@@ -89,8 +99,10 @@ int input_update(t_game game, int nb_joueur) {
 			//sert à poser une bombe pour le joueur 1
 			case SDLK_END:	//cette touche sert pour les ordinateurs portables qui n'ont pas forcément la touce 0 à côté des flèches directionnelles)
 			case SDLK_KP0:
+#ifdef FUNKEY
 			case SDLK_a:
 			case SDLK_b:
+#endif //FUNKEY
 				x= player_get_x(player1);
 				y= player_get_y(player1);
 
@@ -102,7 +114,7 @@ int input_update(t_game game, int nb_joueur) {
 				}
 				break;
 
-	/*
+#ifndef FUNKEY
 			// touches du joueur 2:
 			case SDLK_e:
 				if (nb_joueur == 2){
@@ -154,7 +166,7 @@ int input_update(t_game game, int nb_joueur) {
 					}
 				}
 				break;
-	*/
+#endif // not defined (FUNKEY)
 
 			default: break;
 			}

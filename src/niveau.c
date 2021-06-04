@@ -374,8 +374,9 @@ int editeur_choix_niveau(SDL_Surface *screen){
 
 int are_you_sure(SDL_Surface *screen){
 
-	#warning Voluntary Bypass FunKey
+#ifdef FUNKEY
 	return 1;
+#endif //FUNKEY
 
 	
 #ifdef HW_SCREEN_RESIZE
