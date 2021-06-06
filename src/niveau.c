@@ -76,15 +76,16 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 		switch(event.type)
 		{
 		case SDL_QUIT:
-			SDL_FreeSurface(menu);
+			if(menu != NULL) SDL_FreeSurface(menu);
 			return 1;
 			break;
 		case SDL_KEYDOWN:
 			switch(event.key.keysym.sym)
 			{
 			case SDLK_ESCAPE:
+			case SDLK_q:
 			case SDLK_b:
-				SDL_FreeSurface(menu);
+				if(menu != NULL) SDL_FreeSurface(menu);
 				return 1;
 				break;
 			case SDLK_RETURN:
@@ -107,7 +108,7 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 	}
-	SDL_FreeSurface(menu);
+	if(menu != NULL) SDL_FreeSurface(menu);
 	return 0;
 }
 
@@ -163,6 +164,7 @@ int niveau_2_joueur(SDL_Surface *screen, int choix_niveau){
 			{
 			case SDLK_ESCAPE: // Veut arrêter le jeu
 			case SDLK_b: // Veut arrêter le jeu
+			case SDLK_q:
 				continuer=0;
 				break;
 			case SDLK_UP:
@@ -226,7 +228,7 @@ int niveau_2_joueur(SDL_Surface *screen, int choix_niveau){
 			case SDLK_RETURN:
 			case SDLK_KP_ENTER:
 			case SDLK_a:
-				SDL_FreeSurface(menu);
+				if(menu != NULL) SDL_FreeSurface(menu);
 				return choix_actuel;
 				break;
 
@@ -247,7 +249,7 @@ int niveau_2_joueur(SDL_Surface *screen, int choix_niveau){
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 	}
-	SDL_FreeSurface(menu);
+	if(menu != NULL) SDL_FreeSurface(menu);
 	return 0;
 }
 
@@ -283,6 +285,7 @@ int editeur_choix_niveau(SDL_Surface *screen){
 			{
 			case SDLK_ESCAPE: // Veut arrêter le jeu
 			case SDLK_b: // Veut arrêter le jeu
+			case SDLK_q:
 				continuer=0;
 				break;
 			case SDLK_UP:
@@ -346,7 +349,7 @@ int editeur_choix_niveau(SDL_Surface *screen){
 			case SDLK_RETURN:
 			case SDLK_KP_ENTER:
 			case SDLK_a:
-				SDL_FreeSurface(menu);
+				if(menu != NULL) SDL_FreeSurface(menu);
 				return choix_actuel;
 				break;
 
@@ -367,7 +370,7 @@ int editeur_choix_niveau(SDL_Surface *screen){
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 	}
-	SDL_FreeSurface(menu);
+	if(menu != NULL) SDL_FreeSurface(menu);
 	return 0;
 }
 
@@ -410,6 +413,7 @@ int are_you_sure(SDL_Surface *screen){
 			{
 			case SDLK_ESCAPE: // Veut arrêter le jeu
 			case SDLK_b: // Veut arrêter le jeu
+			case SDLK_q:
 				continuer=0;
 				break;
 			case SDLK_LEFT:
@@ -466,7 +470,7 @@ int are_you_sure(SDL_Surface *screen){
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 	}
-	SDL_FreeSurface(menu);
+	if(menu != NULL) SDL_FreeSurface(menu);
 	return 0;
 }
 
@@ -502,6 +506,7 @@ int choix_nb_joueurs(SDL_Surface *screen){
 			{
 			case SDLK_ESCAPE: // Veut arrêter le jeu
 			case SDLK_b: // Veut arrêter le jeu
+			case SDLK_q:
 				continuer=0;
 				break;
 			case SDLK_UP:
@@ -533,7 +538,7 @@ int choix_nb_joueurs(SDL_Surface *screen){
 			case SDLK_RETURN:
 			case SDLK_KP_ENTER:
 			case SDLK_a:
-				SDL_FreeSurface(menu);
+				if(menu != NULL) SDL_FreeSurface(menu);
 				return choix_actuel;
 				break;
 
@@ -554,7 +559,7 @@ int choix_nb_joueurs(SDL_Surface *screen){
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 	}
-	SDL_FreeSurface(menu);
+	if(menu != NULL) SDL_FreeSurface(menu);
 	return 0;
 }
 
@@ -590,6 +595,7 @@ int options(SDL_Surface *screen){
 			{
 			case SDLK_ESCAPE: // Veut arrêter le jeu
 			case SDLK_b: // Veut arrêter le jeu
+			case SDLK_q:
 				continuer=0;
 				break;
 			case SDLK_LEFT:
@@ -679,7 +685,7 @@ int options(SDL_Surface *screen){
 			case SDLK_RETURN:
 			case SDLK_KP_ENTER:
 			case SDLK_a:
-				SDL_FreeSurface(menu);
+				if(menu != NULL) SDL_FreeSurface(menu);
 				return choix_actuel;
 				break;
 
@@ -700,6 +706,6 @@ int options(SDL_Surface *screen){
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 	}
-	SDL_FreeSurface(menu);
+	if(menu != NULL) SDL_FreeSurface(menu);
 	return 0;
 }

@@ -28,14 +28,22 @@ t_game game_new(int nb_joueur, int niveau, int mode, int kill_bomb) {
 	game_time_init();
 
 	FILE *level;
+	const char *file_path;
 	if (mode==1){
-		if (nb_joueur==1)
-		level=fopen(SRC_LEVELS_1_PLAYER,"r");
-		else
-		level=fopen(SRC_LEVELS_2_PLAYERS,"r");
+		if (nb_joueur==1){
+			file_path = SRC_LEVELS_1_PLAYER;
+		}
+		else{
+			file_path = SRC_LEVELS_2_PLAYERS;
+		}
 	}
 	else{
-		level=fopen(SRC_LEVELS_EDITOR,"r");
+		file_path = SRC_LEVELS_EDITOR;
+	}
+
+	level=fopen(file_path,"r");
+	if(level==NULL){
+		printf("ERROR: cannot open file: %s\n", file_path);
 	}
 	the_game.map = map_load_dynamic(level,niveau,nb_joueur);
 	the_game.player1 = player_init(2,1,1,1);

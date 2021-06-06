@@ -263,7 +263,6 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 
 		}
 	}
-
 	else if (nb_joueur==2){		// boucle principale d'un jeu à 2 joueurs:
 		while (done==0 && player_get_dead(player1)!=0 && player_get_dead(player2)!=0) {
 
@@ -367,9 +366,14 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 			boucle=1;
 		}
 	}
+
+
 	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
-	SDL_BlitSurface(menu, NULL, screen, &positionMenu);
-	SDL_FreeSurface(menu);
+	if(menu != NULL){
+		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
+		SDL_FreeSurface(menu);
+	}
+
 #ifdef HW_SCREEN_RESIZE
 		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
@@ -380,6 +384,7 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 
+
 	bool continu = false;
 	if (boucle==1){
 		while (!continu)
@@ -388,7 +393,7 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 			switch(event.type)
 			{
 			case SDL_QUIT:
-				continu = 1;
+				continu = true;
 				break;
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym){
@@ -397,7 +402,7 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 				case SDLK_RETURN:
 				case SDLK_a:
 				case SDLK_b:
-					continu = 1;
+					continu = true;
 				default: break;
 				}
 				break;
@@ -437,6 +442,7 @@ int main(int argc, char *argv[]) {
 		error("Can't init SDL:  %s\n", SDL_GetError());
 	}
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+	SDL_ShowCursor(SDL_DISABLE);
 
 	/** Init Video */
 #ifdef HW_SCREEN_RESIZE
@@ -489,17 +495,39 @@ int main(int argc, char *argv[]) {
 	Mix_Music *musique_p_e = NULL;
 
 	//if(Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640)==-1){
-	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024)==-1){
+	if(Mix_OpenAudio(44100, AUDIO_S16, 1, 4096) < 0){
+	//if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024)==-1){
 	    printf("Mix_OpenAudio: %s\n", Mix_GetError());
 	    //exit(2);
 	}
 	else{
 		audio_init_ok = true;
-		musique_menu_p = Mix_LoadMUS("audio/mm2titl2.mid");
-		musique_editeur = Mix_LoadMUS("audio/mm2crash.mid");
-		musique_2_p = Mix_LoadMUS("audio/mm2wy1.mid");
-		musique_1_p = Mix_LoadMUS("audio/mix_1_p.mid");
-		musique_p_e = Mix_LoadMUS("audio/mm2flash.mid");
+		const char *music_file;
+		music_file = "audio/mm2titl2.ogg";
+		musique_menu_p = Mix_LoadMUS(music_file);
+		if(musique_menu_p == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mm2crash.ogg";
+		musique_editeur = Mix_LoadMUS(music_file);
+		if(musique_editeur == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mm2wy1.ogg";
+		musique_2_p = Mix_LoadMUS(music_file);
+		if(musique_2_p == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mix_1_p.ogg";
+		musique_1_p = Mix_LoadMUS(music_file);
+		if(musique_1_p == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mm2flash.ogg";
+		musique_p_e = Mix_LoadMUS(music_file);
+		if(musique_p_e == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
 	}
 #endif //SOUND_SDL_ACTIVATED
 
@@ -540,7 +568,10 @@ int main(int argc, char *argv[]) {
 #ifdef SOUND_FMOD_ACTIVATED
 		 		FMUSIC_PlaySong(musique_menu_p);
 #elif defined(SOUND_SDL_ACTIVATED)
-		 		Mix_PlayMusic(musique_menu_p, -1);
+		 		if(Mix_PlayMusic(musique_menu_p, -1) < 0){
+					printf("Error in File: %s, func: %s, l.%d - Cannot play music!\n", 
+						__FILE__, __func__, __LINE__);
+				}
 #endif //SOUND_SDL_ACTIVATED
 		 	}
 			play_music=0;
@@ -560,16 +591,20 @@ int main(int argc, char *argv[]) {
 			break;
 
 		case SDL_KEYDOWN:
-
-			if(event.key.keysym.sym==SDLK_ESCAPE){ // Veut arrêter le jeu
+			switch(event.key.keysym.sym){
+			
+			case SDLK_ESCAPE: // Veut arrêter le jeu
+			case SDLK_q: // Veut arrêter le jeu
 #ifdef SOUND_FMOD_ACTIVATED
 				//FMUSIC_StopSong(musique_menu_p);
 #elif defined(SOUND_SDL_ACTIVATED)
 				Mix_HaltMusic();
 #endif //SOUND_SDL_ACTIVATED
 				done = 1;
-			}
-			else if(event.key.keysym.sym==SDLK_UP || event.key.keysym.sym==SDLK_u){
+				break;
+			
+			case SDLK_UP:
+			case SDLK_u:
 				switch(choix_actuel){
 				case 1:
 					menu = IMG_Load("sprite/menu_q.png");
@@ -596,8 +631,10 @@ int main(int argc, char *argv[]) {
 					choix_actuel=5;
 					break;
 				}
-			}
-			else if(event.key.keysym.sym==SDLK_DOWN || event.key.keysym.sym==SDLK_d){
+				break;
+			
+			case SDLK_DOWN:
+			case SDLK_d:
 				switch(choix_actuel){
 				case 1:
 					menu = IMG_Load("sprite/menu_2_p.png");
@@ -624,9 +661,11 @@ int main(int argc, char *argv[]) {
 					choix_actuel=1;
 					break;
 				}
-			}
-			else if(event.key.keysym.sym==SDLK_RETURN || event.key.keysym.sym==SDLK_KP_ENTER 
-				|| event.key.keysym.sym==SDLK_a){
+				break;
+
+			case SDLK_RETURN:
+			case SDLK_KP_ENTER:
+			case SDLK_a:
 				switch(choix_actuel){
 					
 				case 1:						//on rentre dans le mode 1 joueur.
@@ -636,7 +675,10 @@ int main(int argc, char *argv[]) {
 				 		FMUSIC_PlaySong(musique_1_p);
 #elif defined(SOUND_SDL_ACTIVATED)
 				 		Mix_HaltMusic();
-		 				Mix_PlayMusic(musique_1_p, -1);
+				 		if(Mix_PlayMusic(musique_1_p, -1) < 0){
+							printf("Error in File: %s, func: %s, l.%d - Cannot play music!\n", 
+								__FILE__, __func__, __LINE__);
+						}
 #endif //SOUND_SDL_ACTIVATED
 					}
 					while (niveau_reussi< 10){  //En effet il n'y a que 10 niveaux dans ce jeu
@@ -645,8 +687,7 @@ int main(int argc, char *argv[]) {
 							niveau_reussi=0;	//après game over le joueur repart du niveau 1;
 							game_over=NB_DECES;
 						}
-
-						choix_entrer_dans_niveau=niveau_1_joueur(screen,niveau_reussi+1);
+						choix_entrer_dans_niveau = niveau_1_joueur(screen,niveau_reussi+1);
 						if (choix_entrer_dans_niveau==0){
 							ancien_niveau=niveau_reussi;
 							niveau_reussi=main_game(screen,1,niveau_reussi+1,1, kill_bomb, game_over); // le jeu se lance, 
@@ -668,7 +709,6 @@ int main(int argc, char *argv[]) {
 								break;
 							}
 						}
-
 						else{
 							if(are_you_sure(screen)==1){  //si l'utilisateur veut quitter le mode 1 joueur
 								play_music=1;
@@ -693,7 +733,10 @@ int main(int argc, char *argv[]) {
 						FMUSIC_PlaySong(musique_2_p);
 #elif defined(SOUND_SDL_ACTIVATED)
 				 		Mix_HaltMusic();
-		 				Mix_PlayMusic(musique_2_p, -1);
+				 		if(Mix_PlayMusic(musique_2_p, -1) < 0){
+							printf("Error in File: %s, func: %s, l.%d - Cannot play music!\n", 
+								__FILE__, __func__, __LINE__);
+						}
 #endif //SOUND_SDL_ACTIVATED
 					}
 					sure=2;
@@ -731,7 +774,10 @@ int main(int argc, char *argv[]) {
 						FMUSIC_PlaySong(musique_editeur);
 #elif defined(SOUND_SDL_ACTIVATED)
 				 		Mix_HaltMusic();
-		 				Mix_PlayMusic(musique_editeur, -1);
+				 		if(Mix_PlayMusic(musique_editeur, -1) < 0){
+							printf("Error in File: %s, func: %s, l.%d - Cannot play music!\n", 
+								__FILE__, __func__, __LINE__);
+						}
 #endif //SOUND_SDL_ACTIVATED
 					}
 					sure=2;
@@ -769,7 +815,10 @@ int main(int argc, char *argv[]) {
 						FMUSIC_PlaySong(musique_p_e);
 #elif defined(SOUND_SDL_ACTIVATED)
 				 		Mix_HaltMusic();
-		 				Mix_PlayMusic(musique_p_e, -1);
+				 		if(Mix_PlayMusic(musique_p_e, -1) < 0){
+							printf("Error in File: %s, func: %s, l.%d - Cannot play music!\n", 
+								__FILE__, __func__, __LINE__);
+						}
 #endif //SOUND_SDL_ACTIVATED
 					}
 					sure=2;
@@ -819,7 +868,10 @@ int main(int argc, char *argv[]) {
 #ifdef SOUND_FMOD_ACTIVATED
 							FMUSIC_PlaySong(musique_menu_p);
 #elif defined(SOUND_SDL_ACTIVATED)
-							Mix_PlayMusic(musique_menu_p, -1);
+					 		if(Mix_PlayMusic(musique_menu_p, -1) < 0){
+								printf("Error in File: %s, func: %s, l.%d - Cannot play music!\n", 
+									__FILE__, __func__, __LINE__);
+							}
 #endif //SOUND_SDL_ACTIVATED
 						}
 						audio=1;
@@ -869,8 +921,13 @@ int main(int argc, char *argv[]) {
 
 				}
 				break;
+			
+			default: 
+				break;
+			
 			}
-		default: break;
+			default: 
+				break;
 		}
 
 		
