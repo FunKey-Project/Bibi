@@ -18,6 +18,7 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 	SDL_Rect positionMenu;
 
 #ifdef HW_SCREEN_RESIZE
+	SDL_FillRect(hw_screen, NULL, 0x000000);
 	//if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
@@ -99,7 +100,6 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
@@ -115,6 +115,7 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 int niveau_2_joueur(SDL_Surface *screen, int choix_niveau){
 	
 #ifdef HW_SCREEN_RESIZE
+	SDL_FillRect(hw_screen, NULL, 0x000000);
 	//if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
@@ -240,7 +241,6 @@ int niveau_2_joueur(SDL_Surface *screen, int choix_niveau){
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
@@ -256,6 +256,7 @@ int niveau_2_joueur(SDL_Surface *screen, int choix_niveau){
 int editeur_choix_niveau(SDL_Surface *screen){
 	
 #ifdef HW_SCREEN_RESIZE
+	SDL_FillRect(hw_screen, NULL, 0x000000);
 	//if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
@@ -361,7 +362,6 @@ int editeur_choix_niveau(SDL_Surface *screen){
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
@@ -383,6 +383,7 @@ int are_you_sure(SDL_Surface *screen){
 
 	
 #ifdef HW_SCREEN_RESIZE
+	SDL_FillRect(hw_screen, NULL, 0x000000);
 	//if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
@@ -461,7 +462,6 @@ int are_you_sure(SDL_Surface *screen){
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
@@ -477,6 +477,7 @@ int are_you_sure(SDL_Surface *screen){
 int choix_nb_joueurs(SDL_Surface *screen){
 	
 #ifdef HW_SCREEN_RESIZE
+	SDL_FillRect(hw_screen, NULL, 0x000000);
 	//if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
@@ -550,7 +551,6 @@ int choix_nb_joueurs(SDL_Surface *screen){
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
@@ -566,6 +566,7 @@ int choix_nb_joueurs(SDL_Surface *screen){
 int options(SDL_Surface *screen){
 	
 #ifdef HW_SCREEN_RESIZE
+	SDL_FillRect(hw_screen, NULL, 0x000000);
 	//if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
@@ -697,7 +698,6 @@ int options(SDL_Surface *screen){
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));

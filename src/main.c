@@ -198,18 +198,19 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	t_game game = game_new(nb_joueur,niveau,mode, kill_bomb);			//on lance le jeu
 
 #ifdef HW_SCREEN_RESIZE
-			if(screen != NULL) SDL_FreeSurface(screen);
-			screen = SDL_CreateRGBSurface(SDL_SWSURFACE, SIZE_BLOC * map_get_width(game_the_map(game)),
-				SIZE_BLOC * map_get_height(game_the_map(game)), WINDOW_BPP, 
-				0, 0, 0, 0);
-#else //HW_SCREEN_RESIZE
-			screen = SDL_SetVideoMode(SIZE_BLOC * map_get_width(game_the_map(game)),
-				SIZE_BLOC * map_get_height(game_the_map(game)), WINDOW_BPP,
-				SDL_HWSURFACE);
-			if (screen == NULL) {
-				error("Can't set video mode: %s\n", SDL_GetError());
-				exit(1);
-			}
+	SDL_FillRect(hw_screen, NULL, 0x000000);
+	if(screen != NULL) SDL_FreeSurface(screen);
+	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, SIZE_BLOC * map_get_width(game_the_map(game)),
+		SIZE_BLOC * map_get_height(game_the_map(game)), WINDOW_BPP, 
+		0, 0, 0, 0);
+#else 
+	screen = SDL_SetVideoMode(SIZE_BLOC * map_get_width(game_the_map(game)),
+		SIZE_BLOC * map_get_height(game_the_map(game)), WINDOW_BPP,
+		SDL_HWSURFACE);
+	if (screen == NULL) {
+		error("Can't set video mode: %s\n", SDL_GetError());
+		exit(1);
+	}
 #endif //HW_SCREEN_RESIZE
 
 	game_display(game, screen);
@@ -222,7 +223,8 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	if (nb_joueur == 2)
 	player2 = game_get_player2(game);
 
-	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+	//SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_INTERVAL, SDL_DEFAULT_REPEAT_INTERVAL);
 
 	if (nb_joueur==1){			// boucle principale d'un jeu à 1 joueur:
 		while (done==0 && player_get_dead(player1)!=0) {
@@ -310,14 +312,15 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	}
 
 #ifdef HW_SCREEN_RESIZE
-			if(screen != NULL) SDL_FreeSurface(screen);
-			screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
+	SDL_FillRect(hw_screen, NULL, 0x000000);
+	if(screen != NULL) SDL_FreeSurface(screen);
+	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
-			screen = SDL_SetVideoMode(480,480, WINDOW_BPP,SDL_HWSURFACE);
-			if (screen == NULL) {
-				error("Can't set video mode: %s\n", SDL_GetError());
-				exit(1);
-			}
+	screen = SDL_SetVideoMode(480,480, WINDOW_BPP,SDL_HWSURFACE);
+	if (screen == NULL) {
+		error("Can't set video mode: %s\n", SDL_GetError());
+		exit(1);
+	}
 #endif //HW_SCREEN_RESIZE
 
 	int boucle=0;   //cette variable autorise ou non l'affichage de messages comme "vous avez gagné", "game over", ...
@@ -375,13 +378,12 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	}
 
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
-		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
-	        HW_SCREEN_WIDTH,
-	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
-		SDL_Flip(hw_screen);
+	flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
+        HW_SCREEN_WIDTH,
+        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
+	SDL_Flip(hw_screen);
 #else //HW_SCREEN_RESIZE
-		SDL_Flip(screen);
+	SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 
 
@@ -495,13 +497,14 @@ int main(int argc, char *argv[]) {
 	Mix_Music *musique_p_e = NULL;
 
 	//if(Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640)==-1){
-	if(Mix_OpenAudio(44100, AUDIO_S16, 1, 4096) < 0){
-	//if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024)==-1){
+	//if(Mix_OpenAudio(44100, AUDIO_S16, 1, 4096) < 0){
+	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024)==-1){
 	    printf("Mix_OpenAudio: %s\n", Mix_GetError());
 	    //exit(2);
 	}
 	else{
 		audio_init_ok = true;
+		//Mix_Volume(1,MIX_MAX_VOLUME);
 		const char *music_file;
 		music_file = "audio/mm2titl2.ogg";
 		musique_menu_p = Mix_LoadMUS(music_file);
@@ -557,9 +560,10 @@ int main(int argc, char *argv[]) {
 	//3:editeur, 4:jouer aux niveaux edités, 5: options, 6: quitter)
 	int game_over=NB_DECES;
 	int  resize=0; //Si resize=1 on remet l'écran à la taille 700*500
-	
+	bool menu_change = true;
 	int play_music=1;
 	int audio=1;
+	int prev_time_ms = 0;
 
 	while (!done)
 	{
@@ -577,7 +581,8 @@ int main(int argc, char *argv[]) {
 			play_music=0;
 		}
 
-		SDL_WaitEvent(&event);
+		//SDL_WaitEvent(&event);
+		while (SDL_PollEvent(&event));
 		switch(event.type)
 		{
 
@@ -631,6 +636,7 @@ int main(int argc, char *argv[]) {
 					choix_actuel=5;
 					break;
 				}
+				menu_change = true;
 				break;
 			
 			case SDLK_DOWN:
@@ -661,6 +667,7 @@ int main(int argc, char *argv[]) {
 					choix_actuel=1;
 					break;
 				}
+				menu_change = true;
 				break;
 
 			case SDLK_RETURN:
@@ -933,6 +940,7 @@ int main(int argc, char *argv[]) {
 		
 		if (resize==1){
 #ifdef HW_SCREEN_RESIZE
+			SDL_FillRect(hw_screen, NULL, 0x000000);
 			if(screen != NULL) SDL_FreeSurface(screen);
 			screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 700,500, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
@@ -946,11 +954,13 @@ int main(int argc, char *argv[]) {
 		}
 
 		// Effacement de l'écran
-		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
-		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
+		if(menu_change){
+			//SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
+			SDL_BlitSurface(menu, NULL, screen, &positionMenu);
+			menu_change = false;
+		}
 
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
@@ -959,6 +969,14 @@ int main(int argc, char *argv[]) {
 		SDL_Flip(screen);
 #endif //HW_SCREEN_RESIZE
 
+		/** FPS handling */
+#define FPS_MENU	30		
+		int cur_time_ms = SDL_GetTicks();
+		int wait_time_ms = 1000/FPS_MENU - (cur_time_ms-prev_time_ms);
+		if(wait_time_ms > 0){
+			SDL_Delay(wait_time_ms);
+		}
+		prev_time_ms = SDL_GetTicks();
 	}
 
 	if(audio_init_ok){

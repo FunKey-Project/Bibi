@@ -63,6 +63,8 @@ t_game game_new(int nb_joueur, int niveau, int mode, int kill_bomb) {
 	bomb_explose = FSOUND_Sample_Load(FSOUND_FREE, "audio/bomb.wav", 0, 0, 0);
 #elif defined(SOUND_SDL_ACTIVATED)
 	bomb_explose = Mix_LoadWAV("audio/bomb.wav");
+	//Mix_VolumeChunk(bomb_explose, MIX_MAX_VOLUME/2);
+	Mix_VolumeChunk(bomb_explose, 20);
 #endif //SOUND_FMOD_ACTIVATED
 
 	return &the_game;
@@ -1177,7 +1179,6 @@ void game_display(t_game game, SDL_Surface *screen) {
 
 	/** Flip screen */
 #ifdef HW_SCREEN_RESIZE
-		SDL_FillRect(hw_screen, NULL, 0x000000);
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
 	        HW_SCREEN_WIDTH,
 	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
