@@ -33,6 +33,8 @@ struct s_game {
 	t_bomb  list_bombs;
 	t_flamme list_flammes;
 	t_monster list_monsters;
+	bool viewport_mode;
+	bool must_clear_screen;
 };
 typedef struct s_game * t_game;
 

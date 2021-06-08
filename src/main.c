@@ -13,6 +13,9 @@
 #include "../include/editeur.h"
 #include "../include/niveau.h"
 
+
+//printf("File: %s, func: %s, l.%d \n",__FILE__, __func__, __LINE__);
+
 #ifdef SOUND_FMOD_ACTIVATED
 	#include <FMOD/fmod.h>
 #elif defined(SOUND_SDL_ACTIVATED)
@@ -95,6 +98,16 @@ int input_update(t_game game, int nb_joueur) {
 					return 1;
 				}
 				break;
+
+			case SDLK_v:
+#ifdef FUNKEY
+			case SDLK_x:
+			case SDLK_y:
+#endif //FUNKEY
+				game->viewport_mode = !game->viewport_mode;
+				game->must_clear_screen = true;
+				//printf("Changed viewport mode to: %d\n", game->viewport_mode);
+			break;
 
 			//sert à poser une bombe pour le joueur 1
 			case SDLK_END:	//cette touche sert pour les ordinateurs portables qui n'ont pas forcément la touce 0 à côté des flèches directionnelles)
@@ -226,7 +239,8 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	//SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_INTERVAL, SDL_DEFAULT_REPEAT_INTERVAL);
 
-	if (nb_joueur==1){			// boucle principale d'un jeu à 1 joueur:
+	if (nb_joueur==1){			
+		// boucle principale d'un jeu à 1 joueur:
 		while (done==0 && player_get_dead(player1)!=0) {
 
 			game_time_update();
@@ -265,7 +279,8 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 
 		}
 	}
-	else if (nb_joueur==2){		// boucle principale d'un jeu à 2 joueurs:
+	else if (nb_joueur==2){		
+		// boucle principale d'un jeu à 2 joueurs:
 		while (done==0 && player_get_dead(player1)!=0 && player_get_dead(player2)!=0) {
 
 			game_time_update();
@@ -370,7 +385,6 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 		}
 	}
 
-
 	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 	if(menu != NULL){
 		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
@@ -395,6 +409,7 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 			switch(event.type)
 			{
 			case SDL_QUIT:
+			case SDLK_q:
 				continu = true;
 				break;
 			case SDL_KEYDOWN:
@@ -582,6 +597,7 @@ int main(int argc, char *argv[]) {
 		}
 
 		//SDL_WaitEvent(&event);
+		event.type = 0; // somehow we need to reset here the last event, or it keep being "a"
 		while (SDL_PollEvent(&event));
 		switch(event.type)
 		{
@@ -688,7 +704,7 @@ int main(int argc, char *argv[]) {
 						}
 #endif //SOUND_SDL_ACTIVATED
 					}
-					while (niveau_reussi< 10){  //En effet il n'y a que 10 niveaux dans ce jeu
+					while (niveau_reussi<10){  //En effet il n'y a que 10 niveaux dans ce jeu
 
 						if(game_over<0){
 							niveau_reussi=0;	//après game over le joueur repart du niveau 1;
@@ -924,7 +940,8 @@ int main(int argc, char *argv[]) {
 					break;
 
 
-				default: break;
+				default: 
+					break;
 
 				}
 				break;
@@ -933,11 +950,14 @@ int main(int argc, char *argv[]) {
 				break;
 			
 			}
+			break; 
+
 			default: 
 				break;
 		}
 
 		
+		/** Reset main menu screen */
 		if (resize==1){
 #ifdef HW_SCREEN_RESIZE
 			SDL_FillRect(hw_screen, NULL, 0x000000);
@@ -950,15 +970,15 @@ int main(int argc, char *argv[]) {
 				exit(1);
 			}
 #endif //HW_SCREEN_RESIZE
-			resize=0;
 		}
 
 		// Effacement de l'écran
-		if(menu_change){
+		if(menu_change || resize){
 			//SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
 			SDL_BlitSurface(menu, NULL, screen, &positionMenu);
 			menu_change = false;
 		}
+		resize=0;
 
 #ifdef HW_SCREEN_RESIZE
 		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
@@ -996,7 +1016,7 @@ int main(int argc, char *argv[]) {
 #endif 	//SOUND_SDL_ACTIVATED
 	}
 
-	SDL_FreeSurface(menu);
+	if(menu != NULL) SDL_FreeSurface(menu);
 	SDL_Quit();
 
 	return EXIT_SUCCESS;

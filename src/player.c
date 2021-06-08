@@ -5,16 +5,6 @@
 #include "SDL_image.h"
 #include "../include/game.h"
 
-struct s_player {
-	int x, y, portee_bomb, win;
-	SDL_Surface * directed_img[4];
-	enum e_way current_way;
-	int lives;
-	int nb_bomb;
-	int nb_bomb_max;//cette variable est utile pour les bonus. Elle sert à ce que, par exemple, si le joueur a posé toutes ses bombes (disons 2) et qu'avant qu'elles explosent le joueur prend un bonus decrease_nb_bombs, il ne sera autorisé qu'à poser une seule bombe après l'explosion des deux sur la map.
-	int dead;
-};
-
 static void player_load_img(t_player player, enum e_way way,
 const char *filename) {
 	player->directed_img[way] = IMG_Load(filename);

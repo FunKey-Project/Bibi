@@ -23,7 +23,13 @@
 #define MONSTER_SPEED 7  // the less, the faster
 #define ANIMATION_SPEED 2
 
-// General sprites
+// General sprites and colors
+#define GAME_BG_COLOR_R		153
+#define GAME_BG_COLOR_G		204
+#define GAME_BG_COLOR_B		204
+/*#define GAME_BG_COLOR_R		255
+#define GAME_BG_COLOR_G		255
+#define GAME_BG_COLOR_B		255*/
 #define IMG_MAP_WALL        "sprite/wall.png"
 #define IMG_MAP_BOX         "sprite/box.png"
 #define IMG_MAP_GOAL        "sprite/objectif.png"

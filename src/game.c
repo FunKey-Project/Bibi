@@ -58,13 +58,15 @@ t_game game_new(int nb_joueur, int niveau, int mode, int kill_bomb) {
 	the_game.nb_joueur=nb_joueur;
 	the_game.list_flammes=NULL;
 	the_game.list_monsters=NULL;
+	the_game.viewport_mode=false;
+	the_game.must_clear_screen=false;
 
 #ifdef SOUND_FMOD_ACTIVATED
 	bomb_explose = FSOUND_Sample_Load(FSOUND_FREE, "audio/bomb.wav", 0, 0, 0);
 #elif defined(SOUND_SDL_ACTIVATED)
 	bomb_explose = Mix_LoadWAV("audio/bomb.wav");
 	//Mix_VolumeChunk(bomb_explose, MIX_MAX_VOLUME/2);
-	Mix_VolumeChunk(bomb_explose, 20);
+	if(bomb_explose != NULL) Mix_VolumeChunk(bomb_explose, 20);
 #endif //SOUND_FMOD_ACTIVATED
 
 	return &the_game;
@@ -1133,7 +1135,8 @@ void kill_bomb(t_game game, int x, int y) {
 
 void game_display(t_game game, SDL_Surface *screen) {
 	assert(game);
-	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 153, 204, 204));
+	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 
+		GAME_BG_COLOR_R, GAME_BG_COLOR_G, GAME_BG_COLOR_B));
 	t_bomb temp_bomb= game->list_bombs;
 	t_monster temp_monster= game->list_monsters;
 	t_flamme temp_flamme= game->list_flammes;
@@ -1143,6 +1146,10 @@ void game_display(t_game game, SDL_Surface *screen) {
 	int lives_player2 = 0;
 	int bombs_player2 = 0;
 	int range_player2 = 0;
+
+	static uint16_t viewport_x = 0;
+	static uint16_t viewport_y = 0;
+
 	if (game->nb_joueur == 2){
 		lives_player2 = player_get_lives(game->player2);
 		bombs_player2 = player_get_nb_bomb(game->player2);
@@ -1179,9 +1186,52 @@ void game_display(t_game game, SDL_Surface *screen) {
 
 	/** Flip screen */
 #ifdef HW_SCREEN_RESIZE
-		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
-	        HW_SCREEN_WIDTH,
-	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
+		if(game->must_clear_screen){
+			SDL_FillRect(hw_screen, NULL, 0x000000);
+			game->must_clear_screen = false;
+		}
+
+		if(!game->viewport_mode){
+			
+			/******* Scaled Zoom */
+			flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
+		        HW_SCREEN_WIDTH,
+		        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
+		}
+		else{
+
+			/****** Viewport view */
+#define MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE 1
+			/* Adapt on the right */
+			if(SIZE_BLOC*player_get_x(game->player1) >= viewport_x+HW_SCREEN_WIDTH - MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE*SIZE_BLOC){
+				//printf("%d, %d\n", SIZE_BLOC*player_get_x(game->player1), viewport_x+HW_SCREEN_WIDTH);
+				viewport_x = MIN(SIZE_BLOC*(player_get_x(game->player1)+1+MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE) - HW_SCREEN_WIDTH, 
+					SIZE_BLOC*map_get_width(game->map)-HW_SCREEN_WIDTH);
+				//printf("viewport_x = %d\n", viewport_x);
+			}
+			/* Adapt on the left */
+			if(SIZE_BLOC*player_get_x(game->player1) < viewport_x+MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE*SIZE_BLOC){
+				viewport_x = MIN(SIZE_BLOC*(MAX(player_get_x(game->player1), MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE)-MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE), 
+					SIZE_BLOC*map_get_width(game->map)-HW_SCREEN_WIDTH);			
+			}
+			/* Adapt on the bottom */
+			if(SIZE_BLOC*player_get_y(game->player1) >= viewport_y+HW_SCREEN_HEIGHT - MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE*SIZE_BLOC){
+				viewport_y = MIN(SIZE_BLOC*(player_get_y(game->player1)+1+MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE)- HW_SCREEN_HEIGHT, 
+					SIZE_BLOC*map_get_height(game->map)-HW_SCREEN_HEIGHT);
+			}
+			/* Adapt on the top */
+			if(SIZE_BLOC*player_get_y(game->player1) < viewport_y+MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE*SIZE_BLOC){
+				viewport_y = MIN(SIZE_BLOC*(MAX(player_get_y(game->player1), MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE)-MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE), 
+					SIZE_BLOC*map_get_height(game->map)-HW_SCREEN_HEIGHT);
+			}
+
+			/*uint16_t viewport_x = MIN(SIZE_BLOC*player_get_x(game->player1), SIZE_BLOC*map_get_width(game->map)-HW_SCREEN_WIDTH);
+			uint16_t viewport_y = MIN(SIZE_BLOC*player_get_y(game->player1), SIZE_BLOC*map_get_height(game->map)-HW_SCREEN_HEIGHT);*/
+			SDL_Rect viewport_rect = {viewport_x, viewport_y, HW_SCREEN_WIDTH, HW_SCREEN_HEIGHT};
+			SDL_BlitSurface(screen, &viewport_rect, hw_screen, NULL);
+		}
+
+		/** Flip screen */
 		SDL_Flip(hw_screen);
 #else //HW_SCREEN_RESIZE
 		SDL_Flip(screen);
