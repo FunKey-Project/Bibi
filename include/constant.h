@@ -6,12 +6,13 @@
 //#define SOUND_FMOD_ACTIVATED
 //#define SOUND_SDL_ACTIVATED
 
+#define WINDOW_BPP      16
+
 // Resize ?
 //#define HW_SCREEN_RESIZE
 #define HW_SCREEN_WIDTH		240
 #define HW_SCREEN_HEIGHT	240
-
-#define WINDOW_BPP      16
+#define MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE 2
 
 // Size (# of pixels) of a cell of the map
 #define SIZE_BLOC       40

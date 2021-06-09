@@ -1201,7 +1201,6 @@ void game_display(t_game game, SDL_Surface *screen) {
 		else{
 
 			/****** Viewport view */
-#define MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE 1
 			/* Adapt on the right */
 			if(SIZE_BLOC*player_get_x(game->player1) >= viewport_x+HW_SCREEN_WIDTH - MIN_BLOCKS_VISIBLE_IN_VIEWPORT_MODE*SIZE_BLOC){
 				//printf("%d, %d\n", SIZE_BLOC*player_get_x(game->player1), viewport_x+HW_SCREEN_WIDTH);

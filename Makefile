@@ -13,7 +13,7 @@ ifeq ($(platform), funkey)
 	SDL_INCLUDES  += $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/libmikmod-config --cflags)
 	SDL_LIBS += $(shell /opt/FunKey-sdk-2.0.0/arm-funkey-linux-musleabihf/sysroot/usr/bin/libmikmod-config --libs)
 	SDL_LIBS += -Wl,--as-needed -Wl,--gc-sections -Wl,-O1,--sort-common -flto -s
-	CFLAGS_EXTRA = -DFUNKEY -DHW_SCREEN_RESIZE -DSOUND_SDL_ACTIVATED
+	CFLAGS_EXTRA = -DFUNKEY -DHW_SCREEN_RESIZE -DSOUND_SDL_ACTIVATED -DBYPASS_MENU
 	LDFLAGS_EXTRA =  -lSDL_mixer
 else
 	SDL_INCLUDES = `sdl-config --cflags`

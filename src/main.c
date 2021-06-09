@@ -1025,6 +1025,201 @@ int main_menu_and_game() {
 	return EXIT_SUCCESS;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main_game_no_menu() {
+	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
+		error("Can't init SDL:  %s\n", SDL_GetError());
+	}
+	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+#ifdef FUNKEY
+	SDL_ShowCursor(SDL_DISABLE);
+#endif //FUNKEY
+
+	/** Init Video */
+#ifdef HW_SCREEN_RESIZE
+	hw_screen = SDL_SetVideoMode(HW_SCREEN_WIDTH,HW_SCREEN_HEIGHT, WINDOW_BPP, SDL_HWSURFACE|SDL_DOUBLEBUF);
+	if (hw_screen == NULL) {
+		error("Can't set video mode: %s\n", SDL_GetError());
+	}
+	if(screen != NULL) SDL_FreeSurface(screen);
+	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 700,500, WINDOW_BPP, 0, 0, 0, 0);
+#else //HW_SCREEN_RESIZE
+	screen = SDL_SetVideoMode(700,500, WINDOW_BPP,SDL_HWSURFACE);
+	if (screen == NULL) {
+		error("Can't set video mode: %s\n", SDL_GetError());
+	}
+#endif //HW_SCREEN_RESIZE
+	SDL_WM_SetIcon(IMG_Load(IMG_PLAYER_DOWN), NULL);
+	SDL_WM_SetCaption("[PG110] Projet 2010", NULL);
+
+	/** Load audio */
+#ifdef SOUND_FMOD_ACTIVATED
+	FMUSIC_MODULE *musique_menu_p;
+	FMUSIC_MODULE *musique_editeur;
+	FMUSIC_MODULE *musique_2_p;
+	FMUSIC_MODULE *musique_1_p;
+	FMUSIC_MODULE *musique_p_e;
+
+	if(!FSOUND_Init(11025, 32, 0)){
+		printf("Cannot init audio with FSOUND_Init\n");
+	}
+	else{
+		audio_init_ok = true;
+		musique_menu_p = FMUSIC_LoadSong("audio/mm2titl2.mid");
+		musique_editeur = FMUSIC_LoadSong("audio/mm2crash.mid");
+		musique_2_p = FMUSIC_LoadSong("audio/mm2wy1.mid");
+		musique_1_p = FMUSIC_LoadSong("audio/mix_1_p.mid");
+		musique_p_e = FMUSIC_LoadSong("audio/mm2flash.mid");
+		FMUSIC_SetMasterVolume(musique_menu_p, 130);
+		FMUSIC_SetMasterVolume(musique_p_e, 130);
+		FMUSIC_SetMasterVolume(musique_editeur, 130);
+		FMUSIC_SetMasterVolume(musique_2_p, 130);
+		FMUSIC_SetMasterVolume(musique_1_p, 130);	
+	}
+#elif defined(SOUND_SDL_ACTIVATED)
+	// Setup audio mode
+	Mix_Music *musique_menu_p = NULL;
+	Mix_Music *musique_editeur = NULL;
+	Mix_Music *musique_2_p = NULL;
+	Mix_Music *musique_1_p = NULL;
+	Mix_Music *musique_p_e = NULL;
+
+	//if(Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640)==-1){
+	//if(Mix_OpenAudio(44100, AUDIO_S16, 1, 4096) < 0){
+	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024)==-1){
+	    printf("Mix_OpenAudio: %s\n", Mix_GetError());
+	    //exit(2);
+	}
+	else{
+		audio_init_ok = true;
+		//Mix_Volume(1,MIX_MAX_VOLUME);
+		const char *music_file;
+		music_file = "audio/mm2titl2.ogg";
+		musique_menu_p = Mix_LoadMUS(music_file);
+		if(musique_menu_p == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mm2crash.ogg";
+		musique_editeur = Mix_LoadMUS(music_file);
+		if(musique_editeur == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mm2wy1.ogg";
+		musique_2_p = Mix_LoadMUS(music_file);
+		if(musique_2_p == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mix_1_p.ogg";
+		musique_1_p = Mix_LoadMUS(music_file);
+		if(musique_1_p == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+		music_file = "audio/mm2flash.ogg";
+		musique_p_e = Mix_LoadMUS(music_file);
+		if(musique_p_e == NULL){
+			printf("Mix_LoadMUS(\"%s\"): %s\n", Mix_GetError(), music_file);
+		}
+	}
+#endif //SOUND_SDL_ACTIVATED
+		
+ 	if(audio_init_ok){
+#ifdef SOUND_FMOD_ACTIVATED
+		FMUSIC_StopSong(musique_menu_p);
+ 		FMUSIC_PlaySong(musique_1_p);
+#elif defined(SOUND_SDL_ACTIVATED)
+ 		Mix_HaltMusic();
+ 		if(Mix_PlayMusic(musique_1_p, -1) < 0){
+			printf("Error in File: %s, func: %s, l.%d - Cannot play music!\n", 
+				__FILE__, __func__, __LINE__);
+		}
+#endif //SOUND_SDL_ACTIVATED
+	}
+
+	/** 1 player Game */
+	int niveau_reussi=0, ancien_niveau=1, choix_entrer_dans_niveau, kill_bomb=1;
+	int game_over=NB_DECES;
+	while (niveau_reussi<10){  //En effet il n'y a que 10 niveaux dans ce jeu
+
+		if(game_over<0){
+			niveau_reussi=0;	//après game over le joueur repart du niveau 1;
+			game_over=NB_DECES;
+		}
+		choix_entrer_dans_niveau = niveau_1_joueur(screen,niveau_reussi+1);
+		if (choix_entrer_dans_niveau==0){
+			ancien_niveau=niveau_reussi;
+			niveau_reussi=main_game(1,niveau_reussi+1,1, kill_bomb, game_over); // le jeu se lance, 
+			//le résultat retourné est stocké dans la variable niveau_reussi.
+
+			if(ancien_niveau==niveau_reussi && ancien_niveau!=0){
+				game_over--;		//on regarde si le joueur est mort, dans ce cas on décrémente game_over.
+			}
+			else if(niveau_reussi==-1){		//si l'utilisateur a fait échap ou quitter durant la partie.
+				niveau_reussi=ancien_niveau;
+			}
+
+			if (niveau_reussi>=10){ //si l'utilisateur à gagné le mode 1 joueur
+				choix_entrer_dans_niveau=niveau_1_joueur(screen,0);
+				niveau_reussi=0;
+				game_over=NB_DECES;
+				// FMUSIC_StopSong(musique_1_p);
+				// play_music=1;
+				break;
+			}
+
+		}
+		else{
+			if(are_you_sure(screen)==1){  //si l'utilisateur veut quitter le mode 1 joueur
+ 				if(audio_init_ok){
+#ifdef SOUND_FMOD_ACTIVATED
+					FMUSIC_StopSong(musique_1_p);
+#elif defined(SOUND_SDL_ACTIVATED)
+			 		Mix_HaltMusic();
+#endif //SOUND_SDL_ACTIVATED
+				}
+				break;
+			}
+		}
+	}
+					
+	if(audio_init_ok){
+#ifdef SOUND_FMOD_ACTIVATED
+		FMUSIC_FreeSong(musique_menu_p);
+		FMUSIC_FreeSong(musique_2_p);
+		FMUSIC_FreeSong(musique_1_p);
+		FMUSIC_FreeSong(musique_p_e);
+		FMUSIC_FreeSong(musique_editeur);
+#elif defined(SOUND_SDL_ACTIVATED)
+		Mix_FreeMusic(musique_menu_p);
+		Mix_FreeMusic(musique_2_p);
+		Mix_FreeMusic(musique_1_p);
+		Mix_FreeMusic(musique_p_e);
+		Mix_FreeMusic(musique_editeur);
+		Mix_CloseAudio();
+#endif 	//SOUND_SDL_ACTIVATED
+	}
+
+	SDL_Quit();
+
+	return EXIT_SUCCESS;
+}
+
 int main(int argc, char *argv[]) {
+#ifdef BYPASS_MENU
+	return main_game_no_menu();
+
+#else
 	return main_menu_and_game();
+#endif
 }
