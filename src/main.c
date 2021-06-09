@@ -452,7 +452,7 @@ int main_game(int nb_joueur, int niveau, int mode, int kill_bomb, int game_over)
 
 //##################################################### Main ####################################################################
 //Fonction principale du jeu
-int main(int argc, char *argv[]) {
+int main_menu_and_game() {
 	SDL_Surface *menu = NULL;
 	SDL_Event event;
 	SDL_Rect positionMenu;
@@ -1025,3 +1025,6 @@ int main(int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
+int main(int argc, char *argv[]) {
+	return main_menu_and_game();
+}
