@@ -269,7 +269,14 @@ void sauvegarderNiveau(t_map map, int niveau){
 	FILE* fichier = NULL;
 	int i = 0, j=0, continuer=1,k=1;
 	char a;
-	fichier = fopen("data/niveaux.lvl", "r+");
+
+	const char *file_path = SRC_LEVELS_EDITOR;
+	fichier=fopen(file_path,"r+");
+	if(fichier==NULL){
+		printf("ERROR: cannot open file: %s\n", file_path);
+	}
+	//fichier = fopen("data/niveaux.lvl", "r+");
+
 	while (continuer==1){
 		if (k==niveau) continuer=0;
 		a=fgetc(fichier);

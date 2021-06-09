@@ -25,6 +25,7 @@
 #ifdef HW_SCREEN_RESIZE
 	extern SDL_Surface *hw_screen;
 #endif //HW_SCREEN_RESIZE
+extern SDL_Surface *screen;
 
 #ifdef SOUND_SDL_ACTIVATED
 	extern bool audio_init_ok;

@@ -10,6 +10,7 @@
 #ifdef HW_SCREEN_RESIZE
 	extern SDL_Surface *hw_screen;
 #endif //HW_SCREEN_RESIZE
+extern SDL_Surface *screen;
 
 int niveau_1_joueur(SDL_Surface *screen, int niveau){
 	int continuer = 1;
@@ -34,6 +35,7 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 		menu = IMG_Load("sprite/legende_editeur.png");
 		break;
 	case 0:
+						printf("File: %s, func: %s, l.%d \n",__FILE__, __func__, __LINE__);
 		menu = IMG_Load("sprite/win_the_game.png");
 		break;
 	case 1:
@@ -67,17 +69,30 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 		menu = IMG_Load("sprite/niveau_10.png");
 		break;
 	}
+	
+	/** Display menu */
 	positionMenu.x = 0;
 	positionMenu.y = 0;
+	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
+	SDL_BlitSurface(menu, NULL, screen, &positionMenu);
+	if(menu != NULL) SDL_FreeSurface(menu);
+#ifdef HW_SCREEN_RESIZE
+	flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
+        HW_SCREEN_WIDTH,
+        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
+	SDL_Flip(hw_screen);
+#else //HW_SCREEN_RESIZE
+	SDL_Flip(screen);
+#endif //HW_SCREEN_RESIZE
 
 	/** Wait for input */
 	while (continuer)
 	{
+		SDL_Delay(150); // For debounce
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
 		case SDL_QUIT:
-			if(menu != NULL) SDL_FreeSurface(menu);
 			return 1;
 			break;
 		case SDL_KEYDOWN:
@@ -86,7 +101,6 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 			case SDLK_ESCAPE:
 			case SDLK_q:
 			case SDLK_b:
-				if(menu != NULL) SDL_FreeSurface(menu);
 				return 1;
 				break;
 			case SDLK_RETURN:
@@ -97,18 +111,7 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 			default: break;
 			}
 		}
-		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
-		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
-#ifdef HW_SCREEN_RESIZE
-		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
-	        HW_SCREEN_WIDTH,
-	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
-		SDL_Flip(hw_screen);
-#else //HW_SCREEN_RESIZE
-		SDL_Flip(screen);
-#endif //HW_SCREEN_RESIZE
 	}
-	if(menu != NULL) SDL_FreeSurface(menu);
 	return 0;
 }
 
@@ -154,6 +157,7 @@ int niveau_2_joueur(SDL_Surface *screen, int choix_niveau){
 	}
 	while (continuer)
 	{
+		SDL_Delay(150); // For debounce
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
@@ -275,6 +279,7 @@ int editeur_choix_niveau(SDL_Surface *screen){
 	menu = IMG_Load("sprite/niveau_2p_1.png");
 	while (continuer)
 	{
+		SDL_Delay(150); // For debounce
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
@@ -403,6 +408,7 @@ int are_you_sure(SDL_Surface *screen){
 	menu = IMG_Load("sprite/sure_yes.png");
 	while (continuer)
 	{
+		SDL_Delay(150); // For debounce
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
@@ -496,6 +502,7 @@ int choix_nb_joueurs(SDL_Surface *screen){
 	menu = IMG_Load("sprite/menu_nb_joueur_1.png");
 	while (continuer)
 	{
+		SDL_Delay(150); // For debounce
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
@@ -585,6 +592,7 @@ int options(SDL_Surface *screen){
 	menu = IMG_Load("sprite/options_s_o.png");
 	while (continuer)
 	{
+		SDL_Delay(150); // For debounce
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{

@@ -195,7 +195,7 @@ int input_update(t_game game, int nb_joueur) {
 //Fonction principale une fois qu'une partie est lancee, gere l'actualisation du jeu.
 //Cette fonction retourne un entier qui est le niveau à jouer ensuite (sert pour le mode 1 joueur)
 
-int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill_bomb, int game_over) {
+int main_game(int nb_joueur, int niveau, int mode, int kill_bomb, int game_over) {
 	//nb_joueur indique le nombre de joueurs
 	//niveau indique le niveau à charger
 	//mode indique si on est en mode jeu principal (dans ce cas mode=1) ou en mode "jouer aux niveaux édités" (mode=2)
@@ -326,17 +326,8 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 		}
 	}
 
-#ifdef HW_SCREEN_RESIZE
-	SDL_FillRect(hw_screen, NULL, 0x000000);
-	if(screen != NULL) SDL_FreeSurface(screen);
-	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
-#else //HW_SCREEN_RESIZE
-	screen = SDL_SetVideoMode(480,480, WINDOW_BPP,SDL_HWSURFACE);
-	if (screen == NULL) {
-		error("Can't set video mode: %s\n", SDL_GetError());
-		exit(1);
-	}
-#endif //HW_SCREEN_RESIZE
+	/** Free game assets */
+	game_free(game);
 
 	int boucle=0;   //cette variable autorise ou non l'affichage de messages comme "vous avez gagné", "game over", ...
 	
@@ -385,26 +376,39 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 		}
 	}
 
-	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
-	if(menu != NULL){
-		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
-		SDL_FreeSurface(menu);
-	}
-
+	bool continu = false;
+	if (boucle==1 && menu != NULL){
+		
+		/** Display Menu */
 #ifdef HW_SCREEN_RESIZE
-	flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
-        HW_SCREEN_WIDTH,
-        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
-	SDL_Flip(hw_screen);
+		SDL_FillRect(hw_screen, NULL, 0x000000);
+		if(screen != NULL) SDL_FreeSurface(screen);
+		screen = SDL_CreateRGBSurface(SDL_SWSURFACE, 480,480, WINDOW_BPP, 0, 0, 0, 0);
 #else //HW_SCREEN_RESIZE
-	SDL_Flip(screen);
+		screen = SDL_SetVideoMode(480,480, WINDOW_BPP,SDL_HWSURFACE);
+		if (screen == NULL) {
+			error("Can't set video mode: %s\n", SDL_GetError());
+			exit(1);
+		}
 #endif //HW_SCREEN_RESIZE
 
+		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
+		SDL_BlitSurface(menu, NULL, screen, &positionMenu);
+		SDL_FreeSurface(menu);
 
-	bool continu = false;
-	if (boucle==1){
+#ifdef HW_SCREEN_RESIZE
+		flip_NNOptimized_AllowOutOfScreen(screen, hw_screen,
+	        HW_SCREEN_WIDTH,
+	        MIN(screen->h*HW_SCREEN_WIDTH/screen->w, HW_SCREEN_HEIGHT));
+		SDL_Flip(hw_screen);
+#else //HW_SCREEN_RESIZE
+		SDL_Flip(screen);
+#endif //HW_SCREEN_RESIZE
+
+		/** Wait for key press */
 		while (!continu)
 		{
+			SDL_Delay(150); // For debounce
 			SDL_WaitEvent(&event);
 			switch(event.type)
 			{
@@ -428,12 +432,10 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 	}
 
 	if (nb_joueur==1 && player_win(player1)==1){
-		game_free(game);
 		return niveau;			//permet de passer au niveau suivant
 	}
 	else if(game_over==0){
 		game_over=NB_DECES;
-		game_free(game);
 		return 0;				// s'il y a game over la valeur retournée est 0 afin de reprendre le jeu depuis le niveau 1 
 	}
 	else if(done==2){
@@ -442,7 +444,6 @@ int main_game(SDL_Surface *screen, int nb_joueur, int niveau, int mode, int kill
 		// (donc le nombre de décès autorisés avant d'avoir un game over)
 	}
 	else {
-		game_free(game);
 		return niveau-1;		// lorsque le joueur meurt, informe qu'il faut 
 		//rejouer le niveau précédent et décrémenter la variable game_over
 	}
@@ -459,7 +460,9 @@ int main(int argc, char *argv[]) {
 		error("Can't init SDL:  %s\n", SDL_GetError());
 	}
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+#ifdef FUNKEY
 	SDL_ShowCursor(SDL_DISABLE);
+#endif //FUNKEY
 
 	/** Init Video */
 #ifdef HW_SCREEN_RESIZE
@@ -713,15 +716,15 @@ int main(int argc, char *argv[]) {
 						choix_entrer_dans_niveau = niveau_1_joueur(screen,niveau_reussi+1);
 						if (choix_entrer_dans_niveau==0){
 							ancien_niveau=niveau_reussi;
-							niveau_reussi=main_game(screen,1,niveau_reussi+1,1, kill_bomb, game_over); // le jeu se lance, 
+							niveau_reussi=main_game(1,niveau_reussi+1,1, kill_bomb, game_over); // le jeu se lance, 
 							//le résultat retourné est stocké dans la variable niveau_reussi.
 
 							if(ancien_niveau==niveau_reussi && ancien_niveau!=0){
 								game_over--;		//on regarde si le joueur est mort, dans ce cas on décrémente game_over.
 							}
-
-							else if(niveau_reussi==-1)		//si l'utilisateur a fait échap ou quitter durant la partie.
-							niveau_reussi=ancien_niveau;
+							else if(niveau_reussi==-1){		//si l'utilisateur a fait échap ou quitter durant la partie.
+								niveau_reussi=ancien_niveau;
+							}
 
 							if (niveau_reussi>=10){ //si l'utilisateur à gagné le mode 1 joueur
 								choix_entrer_dans_niveau=niveau_1_joueur(screen,0);
@@ -731,6 +734,7 @@ int main(int argc, char *argv[]) {
 								// play_music=1;
 								break;
 							}
+
 						}
 						else{
 							if(are_you_sure(screen)==1){  //si l'utilisateur veut quitter le mode 1 joueur
@@ -774,7 +778,7 @@ int main(int argc, char *argv[]) {
 						if(choix_entrer_niveau_2p==0)
 						sure=are_you_sure(screen);
 						else
-						main_game(screen,2,choix_entrer_niveau_2p,1, kill_bomb, game_over);
+						main_game(2,choix_entrer_niveau_2p,1, kill_bomb, game_over);
 
 
 					}
@@ -813,9 +817,9 @@ int main(int argc, char *argv[]) {
 						choix_niveau=niveau_2_joueur(screen,choix_ancien_niveau);
 
 						if(choix_niveau==0)
-						sure=are_you_sure(screen);
+							sure=are_you_sure(screen);
 						else if (niveau_1_joueur(screen,-1)==0)
-						editeur(screen,choix_niveau);
+							editeur(screen,choix_niveau);
 
 					}
 
@@ -862,7 +866,7 @@ int main(int argc, char *argv[]) {
 							nb_joueurs=choix_nb_joueurs(screen);
 
 							if(nb_joueurs!=0 ){
-								main_game(screen,nb_joueurs,choix_niveau,2, kill_bomb, game_over);
+								main_game(nb_joueurs,choix_niveau,2, kill_bomb, game_over);
 							}
 						}
 
@@ -955,7 +959,6 @@ int main(int argc, char *argv[]) {
 			default: 
 				break;
 		}
-
 		
 		/** Reset main menu screen */
 		if (resize==1){

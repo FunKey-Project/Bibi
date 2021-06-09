@@ -21,11 +21,18 @@ void editeur(SDL_Surface *screen, int niveau)
 	int continuer = 1, clicGaucheEnCours = 0, clicDroitEnCours = 0;
 	int objetActuel = CELL_WALL;
 	int i, j, xp1, yp1, player1_ok=1, xp2, yp2, player2_ok=1;
-	FILE *level=fopen("data/niveaux.lvl","r");
+
+	FILE *level;
+	const char *file_path = SRC_LEVELS_EDITOR;
+	level=fopen(file_path,"r");
+	if(level==NULL){
+		printf("ERROR: cannot open file: %s\n", file_path);
+	}
+
 	t_map map = map_load_dynamic(level,niveau,2);
 
-
 #ifdef HW_SCREEN_RESIZE
+	uint16_t scaled_height, scaled_height_offset;
 	//if(screen != NULL) SDL_FreeSurface(screen);
 	screen = SDL_CreateRGBSurface(SDL_SWSURFACE, SIZE_BLOC * map_get_width(map),
 				SIZE_BLOC * map_get_height(map), WINDOW_BPP, 0, 0, 0, 0);
@@ -65,6 +72,18 @@ void editeur(SDL_Surface *screen, int niveau)
 			continuer = 0;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
+
+#ifdef HW_SCREEN_RESIZE
+			//printf("\nBefore: (%d, %d)\n", event.button.x, event.button.y);
+			event.button.x = event.button.x*(SIZE_BLOC*map_get_width(map))/HW_SCREEN_WIDTH;
+			scaled_height = MIN(SIZE_BLOC*map_get_height(map)*HW_SCREEN_WIDTH/(SIZE_BLOC*map_get_width(map)), HW_SCREEN_HEIGHT);
+			scaled_height_offset = (HW_SCREEN_HEIGHT-scaled_height);
+			event.button.y = MAX(event.button.y*(SIZE_BLOC*map_get_height(map))/scaled_height, scaled_height_offset)-scaled_height_offset;
+			event.motion.x = event.button.x;
+			event.motion.y = event.button.y;
+			//printf("After: (%d, %d)\n", event.button.x, event.button.y);
+#endif // HW_SCREEN_RESIZE
+
 			if (event.button.button == SDL_BUTTON_LEFT)
 			{
 				// On met l'objet actuellement choisi (wall, box...) à l'endroit du clic
@@ -102,6 +121,17 @@ void editeur(SDL_Surface *screen, int niveau)
 			clicDroitEnCours = 0;
 			break;
 		case SDL_MOUSEMOTION:
+
+#ifdef HW_SCREEN_RESIZE
+			//printf("\nBefore: (%d, %d)\n", event.button.x, event.button.y);
+			event.button.x = event.button.x*(SIZE_BLOC*map_get_width(map))/HW_SCREEN_WIDTH;
+			scaled_height = MIN(SIZE_BLOC*map_get_height(map)*HW_SCREEN_WIDTH/(SIZE_BLOC*map_get_width(map)), HW_SCREEN_HEIGHT);
+			scaled_height_offset = (HW_SCREEN_HEIGHT-scaled_height);
+			event.button.y = MAX(event.button.y*(SIZE_BLOC*map_get_height(map))/scaled_height, scaled_height_offset)-scaled_height_offset;
+			event.motion.x = event.button.x;
+			event.motion.y = event.button.y;
+			//printf("After: (%d, %d)\n", event.button.x, event.button.y);
+#endif // HW_SCREEN_RESIZE
 
 			if (clicGaucheEnCours) // Si on déplace la souris et que le bouton gauche de la souris est enfoncé
 			{
@@ -205,7 +235,6 @@ void editeur(SDL_Surface *screen, int niveau)
 
 		// Effacement de l'écran
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 255, 255, 255));
-
 
 
 
