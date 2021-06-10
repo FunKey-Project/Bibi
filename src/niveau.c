@@ -86,13 +86,14 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 #endif //HW_SCREEN_RESIZE
 
 	/** Wait for input */
-	while (continuer)
+	while (continuer && !exit_game)
 	{
 		SDL_Delay(150); // For debounce
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
 		case SDL_QUIT:
+			exit_game = true;
 			return 1;
 			break;
 		case SDL_KEYDOWN:
@@ -100,8 +101,14 @@ int niveau_1_joueur(SDL_Surface *screen, int niveau){
 			{
 			case SDLK_ESCAPE:
 			case SDLK_q:
-			case SDLK_b:
+#ifdef FUNKEY_MENU
+			  	run_menu_loop();
+
+			  	/** Exit game ? */
+			  	if(exit_game) return 1;;
+#else //FUNKEY_MENU
 				return 1;
+#endif //FUNKEY_MENU
 				break;
 			case SDLK_RETURN:
 			case SDLK_KP_ENTER:

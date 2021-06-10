@@ -12,6 +12,9 @@
 #include "../include/game_time.h"
 #include "../include/editeur.h"
 #include "../include/niveau.h"
+#ifdef FUNKEY_MENU
+#include "../include/menu.h"
+#endif //FUNKEY_MENU
 
 
 //printf("File: %s, func: %s, l.%d \n",__FILE__, __func__, __LINE__);
@@ -26,7 +29,8 @@ bool audio_init_ok = false;
 #ifdef HW_SCREEN_RESIZE
 	SDL_Surface *hw_screen = NULL;
 #endif //HW_SCREEN_RESIZE
-	SDL_Surface *screen=NULL;
+SDL_Surface *screen=NULL;
+bool exit_game = false;
 
 //##################################################### input_update  ####################################################################
 //Gere les entrees clavier lors de la phase de jeu.
@@ -45,6 +49,7 @@ int input_update(t_game game, int nb_joueur) {
 	while (SDL_PollEvent(&event)){
 		switch (event.type) {
 		case SDL_QUIT:
+			exit_game = true;
 			return 2;
 
 		case SDL_KEYDOWN:
@@ -53,7 +58,14 @@ int input_update(t_game game, int nb_joueur) {
 #ifdef FUNKEY
 			case SDLK_q:
 #endif //FUNKEY
+#ifdef FUNKEY_MENU
+			  	run_menu_loop();
+
+			  	/** Exit game ?*/
+			  	if(exit_game) return 2;
+#else //FUNKEY_MENU
 				return 2;
+#endif //FUNKEY_MENU
 
 			case SDLK_UP:
 #ifdef FUNKEY
@@ -406,24 +418,38 @@ int main_game(int nb_joueur, int niveau, int mode, int kill_bomb, int game_over)
 #endif //HW_SCREEN_RESIZE
 
 		/** Wait for key press */
-		while (!continu)
+		while (!continu && !exit_game)
 		{
 			SDL_Delay(150); // For debounce
 			SDL_WaitEvent(&event);
 			switch(event.type)
 			{
 			case SDL_QUIT:
-			case SDLK_q:
 				continu = true;
+				exit_game = true;
 				break;
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym){
+				
+				case SDLK_q:
+	#ifdef FUNKEY_MENU
+				  	run_menu_loop();
+
+				  	/** Exit game ?*/
+				  	if(exit_game) continu = true;
+	#else //FUNKEY_MENU
+					continu = true;
+	#endif //FUNKEY_MENU
+					break;
+
 				case SDLK_ESCAPE:
 				case SDLK_KP_ENTER:
 				case SDLK_RETURN:
 				case SDLK_a:
 				case SDLK_b:
 					continu = true;
+					break;
+
 				default: break;
 				}
 				break;
@@ -1064,6 +1090,16 @@ int main_game_no_menu() {
 	SDL_WM_SetIcon(IMG_Load(IMG_PLAYER_DOWN), NULL);
 	SDL_WM_SetCaption("[PG110] Projet 2010", NULL);
 
+#ifdef FUNKEY_MENU
+    if(TTF_Init())
+    {
+        fprintf(stderr, "Error TTF_Init: %s\n", TTF_GetError());
+        exit(EXIT_FAILURE);
+    }
+	  /// --- Init menu ---
+	  init_menu_SDL();
+#endif //FUNKEY_MENU
+
 	/** Load audio */
 #ifdef SOUND_FMOD_ACTIVATED
 	FMUSIC_MODULE *musique_menu_p;
@@ -1150,17 +1186,24 @@ int main_game_no_menu() {
 	/** 1 player Game */
 	int niveau_reussi=0, ancien_niveau=1, choix_entrer_dans_niveau, kill_bomb=1;
 	int game_over=NB_DECES;
-	while (niveau_reussi<10){  //En effet il n'y a que 10 niveaux dans ce jeu
+	while (niveau_reussi<10 && !exit_game){  //En effet il n'y a que 10 niveaux dans ce jeu
 
 		if(game_over<0){
 			niveau_reussi=0;	//après game over le joueur repart du niveau 1;
 			game_over=NB_DECES;
 		}
 		choix_entrer_dans_niveau = niveau_1_joueur(screen,niveau_reussi+1);
+
+		/** exit game ? */
+		if(exit_game) break;
+
 		if (choix_entrer_dans_niveau==0){
 			ancien_niveau=niveau_reussi;
 			niveau_reussi=main_game(1,niveau_reussi+1,1, kill_bomb, game_over); // le jeu se lance, 
 			//le résultat retourné est stocké dans la variable niveau_reussi.
+
+			/** exit game ? */
+			if(exit_game) break;
 
 			if(ancien_niveau==niveau_reussi && ancien_niveau!=0){
 				game_over--;		//on regarde si le joueur est mort, dans ce cas on décrémente game_over.
@@ -1171,6 +1214,10 @@ int main_game_no_menu() {
 
 			if (niveau_reussi>=10){ //si l'utilisateur à gagné le mode 1 joueur
 				choix_entrer_dans_niveau=niveau_1_joueur(screen,0);
+
+				/** exit game ? */
+				if(exit_game) break;
+
 				niveau_reussi=0;
 				game_over=NB_DECES;
 				// FMUSIC_StopSong(musique_1_p);
@@ -1210,6 +1257,11 @@ int main_game_no_menu() {
 #endif 	//SOUND_SDL_ACTIVATED
 	}
 
+
+#ifdef FUNKEY_MENU
+  	deinit_menu_SDL();
+    TTF_Quit();
+#endif //FUNKEY_MENU
 	SDL_Quit();
 
 	return EXIT_SUCCESS;

@@ -16,16 +16,19 @@
 
 #include <assert.h>
 
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
 
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
+#define ABS(x) (((x) < 0) ? (-x) : (x))
 
 #ifdef HW_SCREEN_RESIZE
 	extern SDL_Surface *hw_screen;
 #endif //HW_SCREEN_RESIZE
 extern SDL_Surface *screen;
+extern bool exit_game;
 
 #ifdef SOUND_SDL_ACTIVATED
 	extern bool audio_init_ok;
