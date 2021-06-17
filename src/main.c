@@ -507,7 +507,7 @@ int main_menu_and_game() {
 	SDL_WM_SetIcon(IMG_Load(IMG_PLAYER_DOWN), NULL);
 	SDL_WM_SetCaption("[PG110] Projet 2010", NULL);
 
-
+printf("File: %s, func: %s, l.%d \n",__FILE__, __func__, __LINE__);
 	/** Load audio */
 #ifdef SOUND_FMOD_ACTIVATED
 	FMUSIC_MODULE *musique_menu_p;
@@ -1270,7 +1270,6 @@ int main_game_no_menu() {
 int main(int argc, char *argv[]) {
 #ifdef BYPASS_MENU
 	return main_game_no_menu();
-
 #else
 	return main_menu_and_game();
 #endif

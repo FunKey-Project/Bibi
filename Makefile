@@ -41,7 +41,7 @@ LDFLAGS = $(SDL_LIBS) -lSDL_image $(LDFLAGS_EXTRA)
 
 SRC  = $(wildcard src/*.c)
 OBJ  = $(SRC:.c=.o) 
-EXEC = bomber
+EXEC = bibi
 
 
 .PHONY: all dep clean mrproper

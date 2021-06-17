@@ -10,7 +10,6 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
-#include <ini.h>
 
 #include "../include/constant.h"
 #include "../include/misc.h"
