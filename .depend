@@ -1,5 +1,4 @@
-menu.o: src/menu.c src/../include/constant.h src/../include/misc.h \
- src/../include/menu.h
+menu.o: src/menu.c
 player.o: src/player.c /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/SDL/SDL_stdinc.h /usr/include/SDL/SDL_config.h \
  /usr/include/SDL/SDL_platform.h /usr/include/SDL/begin_code.h \

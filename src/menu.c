@@ -1,3 +1,5 @@
+#ifdef FUNKEY_MENU
+
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
@@ -739,3 +741,5 @@ void run_menu_loop()
     SDL_Flip(hw_screen);
 }
 
+
+#endif //FUNKEY_MENU
